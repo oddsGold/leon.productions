@@ -10,16 +10,7 @@
 
 @section('content')
 
-    <main class="index-page">
-
-        <section class="without-problem">
-            <div class="container">
-                New home page
-            </div>
-        </section>
-
-    </main>
-
+    <div id="root"></div>
 
 @endsection
 
