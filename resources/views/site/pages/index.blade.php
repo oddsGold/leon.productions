@@ -14,7 +14,7 @@
 
         <section class="without-problem">
             <div class="container">
-                home page
+                New home page
             </div>
         </section>
 
