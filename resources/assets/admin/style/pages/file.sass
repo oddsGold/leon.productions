@@ -1,0 +1,108 @@
+.files-page
+    position: relative
+    min-height: 600px
+
+    .upload-area
+        height: 150px
+        max-height: 150px
+        border: 3px dashed #e0e0e0
+        padding: 10px
+        position: relative
+        border-radius: 12px
+        cursor: pointer
+        overflow: hidden
+        margin-bottom: 40px
+        &:hover,
+        .active
+            background: #f5f5f5
+            border: 3px dashed #c7c7c7
+            .block-button
+                background: #3497e3
+        &.error
+            border: 3px dashed #cf6c6c !important
+            .block-button
+                background: #d64e4e !important
+        .block-button
+            background: #a5a5a5
+            width: 140px
+            height: 37px
+            padding-top: 5px
+            border-radius: 6px
+            text-align: center
+            margin: auto
+            position: absolute
+            top: 0
+            bottom: 0
+            left: 0
+            right: 0
+            font-size: 18px
+            color: #ffffff
+            i
+                margin-right: 10px
+        .cover
+            position: absolute
+            z-index: 10
+            top: 0
+            left: 0
+            height: 100%
+            width: 100%
+            cursor: pointer
+        input
+            opacity: 0
+            position: absolute
+            z-index: -1
+            height: 1px
+            width: 1px
+    .file-row
+        position: relative
+        margin-bottom: 16px
+        background: #f5f5f5
+        padding: 10px
+        box-shadow: 0 0 11px 0 #50505040
+        .preview-link
+            margin-top: 6px
+            display: inline-block
+            i
+                font-size: 110px
+                &.fa-file-pdf
+                    color: #a22626
+                &.fa-file-word
+                    color: #266ea2
+                &.fa-file-excel
+                    color: #1e8c3d
+                &.fa-file-zipper
+                    color: #737373
+                &.fa-file-lines
+                    color: #6b6b6b
+        .name-original,
+        .name-current,
+        .time
+            padding: 5px
+            margin-bottom: 7px
+            font-size: 14px
+        .name-original
+            margin-top: 10px
+
+        .delete
+            position: absolute
+            right: 30px
+            font-size: 20px
+            top: 20px
+            padding: 5px 11px
+            color: #d84040
+            cursor: pointer
+            &:hover
+                background: #d84040
+                color: #fff
+        .link
+            position: absolute
+            right: 30px
+            font-size: 18px
+            top: 80px
+            padding: 7px 11px
+            color: #3899bf
+            cursor: pointer
+            &:hover
+                background: #3d9ee3
+                color: #fff
+
