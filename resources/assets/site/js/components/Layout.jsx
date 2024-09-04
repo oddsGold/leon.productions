@@ -3,16 +3,15 @@ import Logo from "./Logo";
 import Footer from "./Footer/Footer";
 
 const Layout = () => {
-
     return (
         <div className="wrapper">
             <main className="site-main">
                 <div className="home-grid grid grid--no-margin flex flex-wrap">
-                    <Outlet />
+                    <Outlet/>
                 </div>
-                <Logo />
+                <Logo/>
             </main>
-            <Footer />
+            <Footer/>
         </div>
     )
 }
