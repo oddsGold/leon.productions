@@ -4,6 +4,31 @@
     overflow: hidden
     z-index: 1
     height: 70vw
+    background: url("../images/pic.png")no-repeat 50% 50%
+    background-size: cover
+    &:before
+        content: ""
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background-color: rgba(0, 0, 0, .3)
+        -webkit-transition: .3s linear opacity
+        -o-transition: .3s linear opacity
+        -moz-transition: .3s linear opacity
+        transition: .3s linear opacity
+        z-index: 3
+        opacity: 1
+    &:hover
+        &:before
+            opacity: 0
+        .home-grid__item-description
+            img
+                transform: translate(-50%, 100%)
+            .description-text
+                transform: translateX(0) translateY(-100%)
+                opacity: 1
     @include respond-to('desktop')
         height: 28vw
 
@@ -11,4 +36,3 @@
     height: 70vw
     @include respond-to('desktop')
         height: 47vw
-

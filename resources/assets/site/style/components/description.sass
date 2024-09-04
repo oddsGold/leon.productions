@@ -1,0 +1,33 @@
+.home-grid__item-description
+    position: absolute
+    bottom: 30px
+    right: 30px
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    max-width: 464px
+    max-height: 70px
+    width: 100%
+    height: 100%
+    color: #fff
+    text-align: right
+    overflow: hidden
+    justify-content: flex-end
+    .description-text
+        position: absolute
+        bottom: -100%
+        right: 0
+        transform: translateX(0)
+        opacity: 0
+        transition: transform 0.5s ease, opacity 0.5s ease
+        p
+            font-family: $font-cap-medium
+            font-size: 1.875rem
+            line-height: 2.25rem
+    img
+        position: absolute
+        bottom: 0
+        right: 0
+        transform: translateX(-50%)
+        transition: transform 0.5s ease
+        max-width: 20px
