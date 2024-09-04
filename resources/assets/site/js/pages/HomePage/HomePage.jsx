@@ -1,10 +1,16 @@
 import TopCases from "../../components/HomeComponents/TopCases";
 import RemainingCases from "../../components/HomeComponents/RemainingCases";
 import { useUsersQuery } from "../../redux/cases/casesApiSlice";
-import {NavLink} from "react-router-dom";
+import {useCallback, useState} from "react";
+import Contact from "../../components/Modal/Contact";
+import Navigation from "../../components/Navigation/Navigation";
 
 export default function HomePage() {
-    const { data: users, error: isUsersError, isLoading: isUsersLoading } = useUsersQuery();
+    const { data: users, error: isUsersError, isLoading: isUsersLoading } = useUsersQuery()
+    const [showModal, setShowModal] = useState(false);
+
+    const handleShowModal = useCallback(() => setShowModal(true), []);
+    const handleCloseModal = useCallback(() => setShowModal(false), []);
 
     if (isUsersLoading) {
         return <p>Loading...</p>;
@@ -23,14 +29,17 @@ export default function HomePage() {
 
     return (
         <>
-            <nav className="site-menu">
-                <NavLink to="/test" className="site-menu-link">About</NavLink>
-                <NavLink to="/test" className="site-menu-link">Showreel</NavLink>
-                <NavLink to="/test" className="site-menu-link site-menu-link__bg">Contact</NavLink>
-            </nav>
+            <Navigation handleShowModal={handleShowModal} />
             <TopCases cases={topCasesData}/>
             {remainingCasesData.length > 0 && (
                 <RemainingCases cases={remainingCasesData}/>
+            )}
+            {showModal && (
+                <Contact
+                    title="Contact"
+                    body="Modal body text goes here."
+                    onClose={handleCloseModal}
+                />
             )}
         </>
     );
