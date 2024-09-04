@@ -18,8 +18,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->index();
             $table->string('key',50)->unique();
+            $table->string('type',10);
+            $table->integer('small_value')->index()->nullable();
             $table->string('value',200)->index()->nullable();
-            $table->text('long_value')->index()->nullable();
+            $table->text('long_value')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });
