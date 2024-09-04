@@ -24,7 +24,9 @@ export default function HomePage() {
     return (
         <>
             <nav className="site-menu">
-                <NavLink to="/test">Test</NavLink>
+                <NavLink to="/test" className="site-menu-link">About</NavLink>
+                <NavLink to="/test" className="site-menu-link">Showreel</NavLink>
+                <NavLink to="/test" className="site-menu-link site-menu-link__bg">Contact</NavLink>
             </nav>
             <TopCases cases={topCasesData}/>
             {remainingCasesData.length > 0 && (

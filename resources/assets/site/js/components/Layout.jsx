@@ -1,4 +1,6 @@
-import {NavLink, Outlet} from "react-router-dom";
+import {Outlet} from "react-router-dom";
+import Logo from "./Logo";
+import Footer from "./Footer/Footer";
 
 const Layout = () => {
 
@@ -8,7 +10,9 @@ const Layout = () => {
                 <div className="home-grid grid grid--no-margin flex flex-wrap">
                     <Outlet />
                 </div>
+                <Logo />
             </main>
+            <Footer />
         </div>
     )
 }
