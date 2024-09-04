@@ -20,7 +20,7 @@ export default function TopCases({ cases }) {
                 ))}
 
                 <div className="col-lg-6">
-                    <div className="home-grid__item block bg-success text-white d-flex justify-content-center align-items-center">
+                    <div className="home-grid__item">
                         <Talk />
                     </div>
                 </div>
