@@ -31,6 +31,27 @@
                 opacity: 1
     @include respond-to('desktop')
         height: 28vw
+    @include respond-to('tablet')
+        &:before
+            opacity: 0
+        .home-grid__item-description
+            right: 20px
+            bottom: 20px
+            img
+                display: none
+            .description-text
+                bottom: 0
+                transform: translateX(0) translateY(0)
+                opacity: 1
+
+        &:hover
+            .home-grid__item-description
+                .description-text
+                    transform: none
+                    opacity: 1
+
+
+
 
 .home-grid__item--first
     height: 70vw
