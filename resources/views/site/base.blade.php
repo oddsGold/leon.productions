@@ -39,11 +39,7 @@
 
     @include('site.components.analytics.analytics-body')
 
-    <div class="wrapper">
-
-        @yield('content')
-
-    </div>
+    @yield('content')
 
     @viteReactRefresh
     @vite('resources/assets/site/js/index.jsx')
