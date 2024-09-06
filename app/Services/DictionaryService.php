@@ -36,7 +36,7 @@ class DictionaryService
         return $elements;
     }
 
-    public function set($key, $value): null|bool|string|int
+    public function set($key, $value, $user = null): null|bool|string|int
     {
         $model = $this->getModelOrCreate($key);
         $model->key = $key;
@@ -53,7 +53,7 @@ class DictionaryService
         if(is_string($value) && Str::length($value) >= 200){
             $model->long_value = $value;
         }
-        $model->user()->associate(auth()->user());
+        $model->user()->associate($user ?: auth()->user());
         $model->save();
 
         Cache::forget($this->cache_name);
