@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/cases', [App\Http\Controllers\Site\CaseController::class, 'index']);
+
 
 Route::middleware(['auth.ips'])->group(function(){
     Route::prefix('auth')->group(function () {
@@ -38,7 +40,34 @@ Route::middleware(['auth.ips'])->group(function(){
     Route::middleware(['auth:jwt/base'])->group(function(){
 
 
+        Route::get('cases', [App\Http\Controllers\Admin\CaseController::class, 'index']);
+        Route::get('cases/{id}', [App\Http\Controllers\Admin\CaseController::class, 'edit']);
+        Route::post('cases/{id}', [App\Http\Controllers\Admin\CaseController::class, 'update']);
+        Route::delete('cases/{id}', [App\Http\Controllers\Admin\CaseController::class, 'destroy']);
+        Route::post('cases', [App\Http\Controllers\Admin\CaseController::class, 'store']);
 
+        Route::get('about/services', [App\Http\Controllers\Admin\ServiceController::class, 'index']);
+        Route::get('about/services/{id}', [App\Http\Controllers\Admin\ServiceController::class, 'edit']);
+        Route::post('about/services/{id}', [App\Http\Controllers\Admin\ServiceController::class, 'update']);
+        Route::delete('about/services/{id}', [App\Http\Controllers\Admin\ServiceController::class, 'destroy']);
+        Route::post('about/services', [App\Http\Controllers\Admin\ServiceController::class, 'store']);
+
+        Route::get('about/description', [App\Http\Controllers\Admin\AboutController::class, 'showDescription']);
+        Route::post('about/description', [App\Http\Controllers\Admin\AboutController::class, 'updateDescription']);
+        Route::get('about/contacts', [App\Http\Controllers\Admin\AboutController::class, 'showContacts']);
+        Route::post('about/contacts', [App\Http\Controllers\Admin\AboutController::class, 'updateContacts']);
+        Route::get('about/social/media', [App\Http\Controllers\Admin\AboutController::class, 'showSocialMedia']);
+        Route::post('about/social/media', [App\Http\Controllers\Admin\AboutController::class, 'updateSocialMedia']);
+
+        Route::get('contact/description', [App\Http\Controllers\Admin\ContactController::class, 'showDescription']);
+        Route::post('contact/description', [App\Http\Controllers\Admin\ContactController::class, 'updateDescription']);
+        Route::get('contact/contacts', [App\Http\Controllers\Admin\ContactController::class, 'showContacts']);
+        Route::post('contact/contacts', [App\Http\Controllers\Admin\ContactController::class, 'updateContacts']);
+        Route::get('contact/social/media', [App\Http\Controllers\Admin\ContactController::class, 'showSocialMedia']);
+        Route::post('contact/social/media', [App\Http\Controllers\Admin\ContactController::class, 'updateSocialMedia']);
+
+        Route::get('footer/contacts', [App\Http\Controllers\Admin\FooterController::class, 'showContacts']);
+        Route::post('footer/contacts', [App\Http\Controllers\Admin\FooterController::class, 'updateContacts']);
 
         Route::get('users', [App\Http\Controllers\Admin\UserController::class, 'index']);
         Route::get('users/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit']);
