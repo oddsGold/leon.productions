@@ -17,7 +17,6 @@ class RoleResource extends BaseResource
      */
     public function toArray($request)
     {
-
         return $this->filtrateFields([
             'id' => $this->id,
             'name' => $this->name,

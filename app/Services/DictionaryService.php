@@ -36,7 +36,7 @@ class DictionaryService
         return $elements;
     }
 
-    public function set($key, $value): void
+    public function set($key, $value): null|bool|string|int
     {
         $model = $this->getModelOrCreate($key);
         $model->key = $key;
@@ -57,7 +57,7 @@ class DictionaryService
         $model->save();
 
         Cache::forget($this->cache_name);
-        $this->getAllFromCache();
+        return $this->get($key);
     }
 
     protected function getAllFromCache(): array
