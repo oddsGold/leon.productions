@@ -17,7 +17,8 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->unsignedBigInteger('user_id')->index();
-            $table->string('description',255)->unique();
+            $table->string('slug',255)->unique();
+            $table->string('description',255)->index();
             $table->string('preview_url',150)->index()->nullable();
             $table->string('main_url',150)->index();
             $table->boolean('published')->default(false);

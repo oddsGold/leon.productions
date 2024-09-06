@@ -16,6 +16,7 @@ class VideoCase extends Model
     protected $table = 'cases';
 
     protected $fillable = [
+        'slug',
         'description',
         'preview_url',
         'main_url',
