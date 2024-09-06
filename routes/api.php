@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/cases', [App\Http\Controllers\Site\CaseController::class, 'index']);
+Route::get('/about/information', [App\Http\Controllers\Site\AboutController::class, 'index']);
+Route::get('/contact/information', [App\Http\Controllers\Site\ContactController::class, 'index']);
+Route::get('/footer/information', [App\Http\Controllers\Site\FooterController::class, 'index']);
 
 
 Route::middleware(['auth.ips'])->group(function(){
