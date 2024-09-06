@@ -2,3 +2,6 @@
     @if $breakpoint == 'desktop'
         @media (min-width: 1024px)
             @content
+    @if $breakpoint == 'tablet'
+        @media (max-width: 991px)
+            @content

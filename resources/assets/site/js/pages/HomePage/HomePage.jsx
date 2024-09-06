@@ -1,12 +1,12 @@
 import TopCases from "../../components/HomeComponents/TopCases";
 import RemainingCases from "../../components/HomeComponents/RemainingCases";
-import { useUsersQuery } from "../../redux/cases/casesApiSlice";
+import {useUsersQuery} from "../../redux/cases/casesApiSlice";
 import {useCallback, useState} from "react";
 import Contact from "../../components/Modal/Contact";
 import Navigation from "../../components/Navigation/Navigation";
 
 export default function HomePage() {
-    const { data: users, error: isUsersError, isLoading: isUsersLoading } = useUsersQuery()
+    const {data: users, error: isUsersError, isLoading: isUsersLoading} = useUsersQuery()
     const [showModal, setShowModal] = useState(false);
 
     const handleShowModal = useCallback(() => setShowModal(true), []);
@@ -29,8 +29,8 @@ export default function HomePage() {
 
     return (
         <>
-            <Navigation handleShowModal={handleShowModal} />
-            <TopCases cases={topCasesData}/>
+            <Navigation handleShowModal={handleShowModal}/>
+            <TopCases cases={topCasesData} handleShowModal={handleShowModal}/>
             {remainingCasesData.length > 0 && (
                 <RemainingCases cases={remainingCasesData}/>
             )}

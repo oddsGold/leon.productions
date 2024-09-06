@@ -1,25 +1,49 @@
 .site-menu
     position: fixed
-    top: 29px
+    top: 30px
     left: 30px
     z-index: 10
-    display: flex
-    flex-direction: column
-    .site-menu-link
-        background-color: transparent
-        text-decoration: none
-        text-transform: uppercase
-        font-family: $font-cap-medium
-        font-size: 1.5rem
-        line-height: 1.8rem
-        color: #fff
-        margin-top: 20px
-        &:first-child
-            margin-top: 0
-        &:last-child
-            margin-top: 60px
-    .site-menu-link__bg
-        font-family: $font-cap-semibold
-        border: 3px solid #F5A507
-        color: #F5A507
-        padding: 16px 30px
+    > div
+        display: flex
+        flex-direction: column
+        .site-menu-link
+            background-color: transparent
+            text-decoration: none
+            text-transform: uppercase
+            font-family: $font-cap-medium
+            font-size: 1.5rem
+            line-height: 1.8rem
+            color: #fff
+            margin-top: 20px
+            &:first-child
+                margin-top: 0
+            &:last-child
+                margin-top: 60px
+        .site-menu-link__bg
+            font-family: $font-cap-semibold
+            border: 3px solid #F5A507
+            color: #F5A507
+            padding: 16px 30px
+
+@include respond-to('tablet')
+    .site-menu
+        top: inherit
+        bottom: 52px
+        left: 0
+        padding: 0 20px
+        width: 100%
+        > div
+            flex-direction: row
+            align-items: center
+            justify-content: space-between
+            background-color: #161614
+            padding: 10px
+            .site-menu-link
+                margin-top: 0
+                font-size: 1.25rem
+                line-height: 1.5rem
+                &:last-child
+                    margin-top: 0
+            .site-menu-link__bg
+                padding: 10px 20px
+

@@ -1,7 +1,7 @@
 import Talk from "./Talk";
 import Description from "../Description";
 
-export default function TopCases({ cases }) {
+export default function TopCases({ cases, handleShowModal }) {
     return (
         <>
             {cases.length > 0 && (
@@ -24,7 +24,7 @@ export default function TopCases({ cases }) {
 
                 <div className="col-lg-6">
                     <div className="home-grid__item">
-                        <Talk />
+                        <Talk handleShowModal={handleShowModal} />
                     </div>
                 </div>
             </div>

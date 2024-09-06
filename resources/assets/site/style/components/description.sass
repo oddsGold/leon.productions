@@ -31,3 +31,11 @@
         transform: translateX(-50%)
         transition: transform 0.5s ease
         max-width: 20px
+
+@include respond-to('tablet')
+    .home-grid__item-description
+        max-width: 350px
+        .description-text
+            p
+                font-size: 1.125rem
+                line-height: 1.375rem
