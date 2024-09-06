@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 const Contact = ({ title, body, onClose }) => {
-    const [isVisible, setIsVisible] = useState(true);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsVisible(true);
+        }, 10);
+    }, []);
 
     useEffect(() => {
         if (!isVisible) {
