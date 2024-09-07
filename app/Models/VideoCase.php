@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Extensions\Published;
 use App\Extensions\Sortable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,13 +12,15 @@ class VideoCase extends Model
 {
     use HasFactory,
         SoftDeletes,
-        Sortable;
+        Sortable,
+        Published;
 
     protected $table = 'cases';
 
     protected $fillable = [
         'slug',
         'description',
+        'image_id',
         'preview_url',
         'main_url',
         'published',
@@ -33,6 +36,11 @@ class VideoCase extends Model
     public $sortable = [
         'id'
     ];
+
+    public function image()
+    {
+        return $this->belongsTo(Image::class,'image_id');
+    }
 
     public function user()
     {

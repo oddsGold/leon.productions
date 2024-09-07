@@ -17,7 +17,7 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->unsignedBigInteger('user_id')->index();
-            $table->string('name',255)->unique();
+            $table->string('name',255)->index();
             $table->unsignedBigInteger('position')->nullable()->index();
             $table->timestamps();
             $table->softDeletes();

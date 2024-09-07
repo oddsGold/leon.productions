@@ -3,6 +3,7 @@
 namespace App\Http\Resources\VideoCase;
 
 use App\Http\Resources\BaseResource;
+use App\Http\Resources\Image\ImageResource;
 
 class CaseResource extends BaseResource
 {
@@ -12,6 +13,7 @@ class CaseResource extends BaseResource
             'id' => $this->id,
             'slug' => $this->slug,
             'description' => $this->description,
+            'image' => (new ImageResource($this->image))->only(['id', 'url', 'name', 'path', 'created_at']),
             'preview_url' => $this->preview_url,
             'main_url' => $this->main_url,
             'user' => $this->user ? $this->user->login : null,

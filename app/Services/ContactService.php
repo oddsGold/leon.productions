@@ -44,35 +44,40 @@ class ContactService
 
     public function getSocialMediaForSite()
     {
-        return array_filter([
-            [
-                'link' => $this->dictionaryService->get('contact_social_instagram_link', null),
-                'icon' => $this->dictionaryService->get('social_instagram_icon', null),
-                'published' => $this->dictionaryService->get('contact_social_instagram_published', false),
-            ],
-            [
-                'link' => $this->dictionaryService->get('contact_social_facebook_link', null),
-                'icon' => $this->dictionaryService->get('social_facebook_icon', null),
-                'published' => $this->dictionaryService->get('contact_social_facebook_published', false),
-            ],
-            [
-                'link' => $this->dictionaryService->get('contact_social_youtube_link', null),
-                'icon' => $this->dictionaryService->get('social_youtube_icon', null),
-                'published' => $this->dictionaryService->get('contact_social_youtube_published', false),
-            ],
-            [
-                'link' => $this->dictionaryService->get('contact_social_linkedin_link', null),
-                'icon' => $this->dictionaryService->get('social_linkedin_icon', null),
-                'published' => $this->dictionaryService->get('about_social_linkedin_published', false),
-            ],
-            [
-                'link' => $this->dictionaryService->get('about_social_vimeo_link', null),
-                'icon' => $this->dictionaryService->get('social_vimeo_icon', null),
-                'published' => $this->dictionaryService->get('about_social_vimeo_published', false),
-            ],
-        ], function($social){
-            return $social['published'];
-        });
+        return array_values(
+            array_map(function($social){
+                unset($social['published']);
+                return $social;
+            }, array_filter([
+                [
+                    'link' => $this->dictionaryService->get('contact_social_instagram_link', null),
+                    'icon' => $this->dictionaryService->get('social_instagram_icon', null),
+                    'published' => $this->dictionaryService->get('contact_social_instagram_published', false),
+                ],
+                [
+                    'link' => $this->dictionaryService->get('contact_social_facebook_link', null),
+                    'icon' => $this->dictionaryService->get('social_facebook_icon', null),
+                    'published' => $this->dictionaryService->get('contact_social_facebook_published', false),
+                ],
+                [
+                    'link' => $this->dictionaryService->get('contact_social_youtube_link', null),
+                    'icon' => $this->dictionaryService->get('social_youtube_icon', null),
+                    'published' => $this->dictionaryService->get('contact_social_youtube_published', false),
+                ],
+                [
+                    'link' => $this->dictionaryService->get('contact_social_linkedin_link', null),
+                    'icon' => $this->dictionaryService->get('social_linkedin_icon', null),
+                    'published' => $this->dictionaryService->get('contact_social_linkedin_published', false),
+                ],
+                [
+                    'link' => $this->dictionaryService->get('contact_social_vimeo_link', null),
+                    'icon' => $this->dictionaryService->get('social_vimeo_icon', null),
+                    'published' => $this->dictionaryService->get('contact_social_vimeo_published', false),
+                ],
+            ], function($social){
+                return $social['published'];
+            }))
+        );
     }
 
     public function getSocialMedia()
