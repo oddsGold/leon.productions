@@ -1,32 +1,31 @@
 import TopCases from "../../components/HomeComponents/TopCases";
 import RemainingCases from "../../components/HomeComponents/RemainingCases";
-import {useUsersQuery} from "../../redux/cases/casesApiSlice";
 import {useCallback, useState} from "react";
 import Contact from "../../components/Modal/Contact";
 import Navigation from "../../components/Navigation/Navigation";
+import {useVideoQuery} from "../../redux/cases/casesApiSlice";
 
 export default function HomePage() {
-    const {data: users, error: isUsersError, isLoading: isUsersLoading} = useUsersQuery()
+    const {data: videos, error: isVideosError, isLoading: isVideosLoading} = useVideoQuery()
     const [showModal, setShowModal] = useState(false);
 
     const handleShowModal = useCallback(() => setShowModal(true), []);
     const handleCloseModal = useCallback(() => setShowModal(false), []);
 
-
-    if (isUsersLoading) {
+    if (isVideosLoading) {
         return <p>Loading...</p>;
     }
 
-    if (isUsersError) {
+    if (isVideosError) {
         return <p>Failed to load data. Please try again later.</p>;
     }
 
-    if (!users || users.length === 0) {
+    if (!videos || videos.length === 0) {
         return <p>No data available.</p>;
     }
 
-    const topCasesData = users.slice(0, 4);
-    const remainingCasesData = users.slice(4);
+    const topCasesData = videos.slice(0, 4);
+    const remainingCasesData = videos.slice(4);
 
     return (
         <>
