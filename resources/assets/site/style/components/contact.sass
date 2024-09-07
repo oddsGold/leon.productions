@@ -51,7 +51,7 @@
                 text-transform: uppercase
                 color: rgba(255, 255, 255, 1)
                 font-size: 3.75rem
-                font-family: $font-cap-bold
+                @include font-style($font-bold, 700, normal, auto)
                 letter-spacing: 3px
             .btn-close
                 color: #fff
@@ -67,7 +67,7 @@
                 color: #fff
                 font-size: 1.875rem
                 line-height: 2.25rem
-                font-family: $font-cap-medium
+                @include font-style($font-medium, 500, normal, auto)
             .modal-body-info
                 display: flex
                 align-items: center

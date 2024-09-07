@@ -5,3 +5,10 @@
     @if $breakpoint == 'tablet'
         @media (max-width: 991px)
             @content
+
+
+@mixin font-style($family, $weight: 400, $style: normal, $optical-sizing: auto)
+    font-family: $family, sans-serif
+    font-weight: $weight
+    font-style: $style
+    font-optical-sizing: $optical-sizing

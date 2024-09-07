@@ -12,6 +12,7 @@ export default function HomePage() {
     const handleShowModal = useCallback(() => setShowModal(true), []);
     const handleCloseModal = useCallback(() => setShowModal(false), []);
 
+
     if (isUsersLoading) {
         return <p>Loading...</p>;
     }
