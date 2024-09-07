@@ -25,9 +25,14 @@ const Contact = ({ title, body, onClose }) => {
                 className={`modal-content ${isVisible ? 'show' : 'hide'}`}
                 onClick={(e) => e.stopPropagation()}
             >
+                <button type="button" className="btn-close__mobile" onClick={() => setIsVisible(false)}
+                        aria-label="Close">
+                    <img src="/images/close-icon-contact.png" alt="icon-close"/>
+                </button>
                 <div className="modal-header">
                     <h5 className="modal-title">{title}</h5>
-                    <button type="button" className="btn-close" onClick={() => setIsVisible(false)} aria-label="Close">&#10006;</button>
+                    <button type="button" className="btn-close" onClick={() => setIsVisible(false)}
+                            aria-label="Close">&#10006;</button>
                 </div>
                 <div className="modal-body">
                     <div className="modal-body-description">
@@ -36,7 +41,7 @@ const Contact = ({ title, body, onClose }) => {
                     </div>
                     <div className="modal-body-info">
                         <a href="mailto:info@leon.productions">info@leon.productions</a>
-                        <p>Whatsapp | Telegram</p>
+                        <p className="modal-body-info__padding">Whatsapp | Telegram</p>
                         <p>+380674533225</p>
                     </div>
                     <div className="modal-body-social">

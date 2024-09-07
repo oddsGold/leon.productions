@@ -2,10 +2,10 @@ body
     transition: padding-top 0.5s ease-in-out
 
 .logo
-    transition: bottom 0.5s ease-in-out
+    transition: bottom 0.5s ease-in-out, top 0.5s ease-in-out
 
 .site-menu
-    transition: top 0.5s ease-in-out
+    transition: top 0.5s ease-in-out, bottom 0.5s ease-in-out
 
 .about
     position: fixed
@@ -42,10 +42,16 @@ body
                 font-size: 3.75rem
                 line-height: 5.625rem
                 text-transform: uppercase
+                margin: 0
+                padding: 0
         .about-content-row
             position: relative
             z-index: 100
-            padding: 30px 0 90px 0
+            padding: 10px 0 90px 0
+            display: grid
+            grid-template-columns: 35% 65%
+            .about-content-row-item__padding
+                padding-left: 100px
             .about-content-row-title
                 p
                     color: rgba(245, 165, 7, 1)
@@ -55,6 +61,7 @@ body
             .about-content-row-text
                 padding-top: 20px
                 color: #fff
+                padding-right: 42px
                 p
                     font-size: 1.25rem
                     line-height: 1.875rem
@@ -63,6 +70,7 @@ body
                         padding-bottom: 0
             .about-content-row-grid
                 display: grid
+                //grid-template-columns: 294px 266px 294px
                 grid-template-columns: 1fr 1fr 1fr
                 row-gap: 40px
                 column-gap: 100px
@@ -77,5 +85,77 @@ body
                     p
                         font-size: 1.25rem
                         line-height: 1.5rem
+    .about-content-contacts
+        position: relative
+        z-index: 100
+        display: flex
+        align-items: center
+        justify-content: center
+        color: rgba(245, 165, 7, 1)
+        font-size: 1.875rem
+        line-height: 2.25rem
+        a
+            color: rgba(245, 165, 7, 1)
+        .about-content-contacts__padding
+            padding: 0 100px
+    .about-content-social
+        position: relative
+        z-index: 100
+        display: flex
+        align-items: center
+        justify-content: center
+        padding-top: 30px
+        a
+            padding: 0 63px
+            &:first-child
+                padding-left: 0
+            &:last-child
+                padding-right: 0
 
-
+@include respond-to('tablet')
+    .about
+        max-height: 100vh
+        overflow-y: auto
+        transition: max-height 0.5s ease-in-out, transform 0.5s ease-in-out
+        .about-content
+            padding: 0 30px 54px 30px
+            .about-content-btn
+                top: 10px
+                right: 15px
+                padding-top: 0
+                font-size: 1.5rem
+            .about-content-title
+                h3
+                    font-size: 2.5rem
+                    line-height: 3.75rem
+            .about-content-row
+                grid-template-columns: 1fr
+                padding: 10px 0 70px 0
+                .about-content-row-title
+                    p
+                        font-size: 1.25rem
+                        line-height: 1.25rem
+                .about-content-row-text
+                    p
+                        font-size: 1.125rem
+                        line-height: 1.6rem
+                .about-content-row-grid
+                    grid-template-columns: 1fr 1fr
+                    row-gap: 20px
+                    column-gap: 30px
+                    .grid-item
+                        p
+                            font-size: 1.125rem
+                            line-height: 1.35rem
+                .about-content-row-item__padding
+                    padding-left: 0
+                    padding-top: 30px
+        .about-content-contacts
+            flex-direction: column
+            font-size: 1.5rem
+            line-height: 1.8rem
+            .about-content-contacts__padding
+                padding: 20px 0
+        .about-content-social
+            a
+                padding: 0 25px
