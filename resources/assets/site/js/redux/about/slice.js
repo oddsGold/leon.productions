@@ -14,8 +14,11 @@ const aboutSlice = createSlice({
         hideAbout: (state) => {
             state.isVisible = false;
         },
+        toggleAbout: (state) => {
+            state.isVisible = !state.isVisible;
+        },
     },
 });
 
-export const { showAbout, hideAbout } = aboutSlice.actions;
+export const { showAbout, hideAbout, toggleAbout } = aboutSlice.actions;
 export default aboutSlice.reducer;
