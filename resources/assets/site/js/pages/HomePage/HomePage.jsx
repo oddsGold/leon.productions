@@ -4,6 +4,8 @@ import {useCallback, useState} from "react";
 import Contact from "../../components/Modal/Contact";
 import Navigation from "../../components/Navigation/Navigation";
 import {useVideoQuery} from "../../redux/cases/casesApiSlice";
+import NoDataPage from "../NoDataPage/NoDataPage";
+import Loader from "../../components/Loader/Loader";
 
 export default function HomePage() {
     const {data: videos, error: isVideosError, isLoading: isVideosLoading} = useVideoQuery()
@@ -13,15 +15,15 @@ export default function HomePage() {
     const handleCloseModal = useCallback(() => setShowModal(false), []);
 
     if (isVideosLoading) {
-        return <p>Loading...</p>;
+        return <Loader />;
     }
 
     if (isVideosError) {
-        return <p>Failed to load data. Please try again later.</p>;
+        return <NoDataPage />;
     }
 
     if (!videos || videos.length === 0) {
-        return <p>No data available.</p>;
+        return <NoDataPage />;
     }
 
     const topCasesData = videos.slice(0, 4);

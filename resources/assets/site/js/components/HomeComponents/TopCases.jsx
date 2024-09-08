@@ -1,36 +1,9 @@
 import Talk from "./Talk";
 import Description from "../Description";
-import {useEffect, useRef} from "react";
-import Player from '@vimeo/player';
+import {useVimeoPlayers} from "../../hooks/useVimeoPlayers";
 
 export default function TopCases({cases, handleShowModal}) {
-    const videoRefs = useRef({});
-
-    useEffect(() => {
-        if (cases) {
-            cases.forEach((video) => {
-                if (!videoRefs.current[video.id]) {
-                    videoRefs.current[video.id] = new Player(`vimeo-${video.id}`, {
-                        url: video.preview_url,
-                        controls: false,
-                        loop: true,
-                        muted: true
-                    });
-
-                    const videoElement = document.querySelector(`#vimeo-${video.id}`).parentElement;
-                    videoElement.addEventListener('mouseover', () => {
-                        videoElement.classList.add('play');
-                        videoRefs.current[video.id].play();
-                    });
-
-                    videoElement.addEventListener('mouseout', () => {
-                        videoElement.classList.remove('play');
-                        videoRefs.current[video.id].pause();
-                    });
-                }
-            });
-        }
-    }, [cases]);
+    useVimeoPlayers(cases);
 
 
     return (
@@ -47,7 +20,7 @@ export default function TopCases({cases, handleShowModal}) {
 
             <div className="row no-gutters">
                 {cases.slice(1).map((video) => (
-                    <div key={video.id} className="col-lg-6">
+                    <div key={video.id} className="col-xl-6">
                         <div className="home-grid__item">
                             <div className="video-container">
                                 <div id={`vimeo-${video.id}`} className="vimeo-player"></div>
@@ -57,7 +30,7 @@ export default function TopCases({cases, handleShowModal}) {
                     </div>
                 ))}
 
-                <div className="col-lg-6">
+                <div className="col-xl-6">
                     <div className="home-grid__item">
                         <Talk handleShowModal={handleShowModal}/>
                     </div>
