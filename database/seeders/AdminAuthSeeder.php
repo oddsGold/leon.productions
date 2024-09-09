@@ -31,6 +31,7 @@ class AdminAuthSeeder extends Seeder
         $createPermission = \App\Models\Permission::factory()->create(['name' => 'create', 'label' => 'Создение']);
         $updatePermission = \App\Models\Permission::factory()->create(['name' => 'update', 'label' => 'Изминение']);
         $deletePermission = \App\Models\Permission::factory()->create(['name' => 'delete', 'label' => 'Удаление']);
+        $uploadPermission = \App\Models\Permission::factory()->create(['name' => 'upload', 'label' => 'Загрузка файлов']);
 
 
 
@@ -39,6 +40,27 @@ class AdminAuthSeeder extends Seeder
             ->has(\App\Models\User::factory()->state(['login' => 'user_chadyk', 'tfa' => 0])->count(1), 'users')
             ->has(\App\Models\User::factory()->state(['login' => 'user_sulym', 'tfa' => 0])->count(1), 'users')
 
+
+            ->hasAttached($caseResource,['permission_id' => $viewPermission->id])
+            ->hasAttached($caseResource,['permission_id' => $createPermission->id])
+            ->hasAttached($caseResource,['permission_id' => $updatePermission->id])
+            ->hasAttached($caseResource,['permission_id' => $deletePermission->id])
+            ->hasAttached($caseResource,['permission_id' => $uploadPermission->id])
+
+            ->hasAttached($aboutResource,['permission_id' => $viewPermission->id])
+            ->hasAttached($aboutResource,['permission_id' => $createPermission->id])
+            ->hasAttached($aboutResource,['permission_id' => $updatePermission->id])
+            ->hasAttached($aboutResource,['permission_id' => $deletePermission->id])
+
+            ->hasAttached($contactResource,['permission_id' => $viewPermission->id])
+            ->hasAttached($contactResource,['permission_id' => $createPermission->id])
+            ->hasAttached($contactResource,['permission_id' => $updatePermission->id])
+            ->hasAttached($contactResource,['permission_id' => $deletePermission->id])
+
+            ->hasAttached($footerResource,['permission_id' => $viewPermission->id])
+            ->hasAttached($footerResource,['permission_id' => $createPermission->id])
+            ->hasAttached($footerResource,['permission_id' => $updatePermission->id])
+            ->hasAttached($footerResource,['permission_id' => $deletePermission->id])
 
             ->hasAttached($userResource,['permission_id' => $viewPermission->id])
             ->hasAttached($userResource,['permission_id' => $createPermission->id])
@@ -58,6 +80,26 @@ class AdminAuthSeeder extends Seeder
             ->has(\App\Models\User::factory()->state(['login' => 'user_test', 'tfa' => 1])->count(1), 'users')
             ->has(\App\Models\User::factory()->state(['login' => 'user_test_2', 'tfa' => 1])->count(1), 'users')
 
+            ->hasAttached($caseResource,['permission_id' => $viewPermission->id])
+            ->hasAttached($caseResource,['permission_id' => $createPermission->id])
+            ->hasAttached($caseResource,['permission_id' => $updatePermission->id])
+            ->hasAttached($caseResource,['permission_id' => $deletePermission->id])
+            ->hasAttached($caseResource,['permission_id' => $uploadPermission->id])
+
+            ->hasAttached($aboutResource,['permission_id' => $viewPermission->id])
+            ->hasAttached($aboutResource,['permission_id' => $createPermission->id])
+            ->hasAttached($aboutResource,['permission_id' => $updatePermission->id])
+            ->hasAttached($aboutResource,['permission_id' => $deletePermission->id])
+
+            ->hasAttached($contactResource,['permission_id' => $viewPermission->id])
+            ->hasAttached($contactResource,['permission_id' => $createPermission->id])
+            ->hasAttached($contactResource,['permission_id' => $updatePermission->id])
+            ->hasAttached($contactResource,['permission_id' => $deletePermission->id])
+
+            ->hasAttached($footerResource,['permission_id' => $viewPermission->id])
+            ->hasAttached($footerResource,['permission_id' => $createPermission->id])
+            ->hasAttached($footerResource,['permission_id' => $updatePermission->id])
+            ->hasAttached($footerResource,['permission_id' => $deletePermission->id])
 
             ->hasAttached($userResource,['permission_id' => $viewPermission->id])
             ->hasAttached($userResource,['permission_id' => $createPermission->id])
@@ -68,7 +110,6 @@ class AdminAuthSeeder extends Seeder
             ->hasAttached($roleResource,['permission_id' => $createPermission->id])
             ->hasAttached($roleResource,['permission_id' => $updatePermission->id])
             ->hasAttached($roleResource,['permission_id' => $deletePermission->id])
-
 
             ->create(['name' => \App\Models\Role::ADMIN_NAME, 'label' => 'Администратор']);
 
@@ -107,7 +148,7 @@ class AdminAuthSeeder extends Seeder
             ->for($aboutResource, 'resource')
             ->create([
                 'name' => 'Копирайт',
-                'urn' => '/admin/about/copyright'
+                'urn' => '/admin/about/description'
             ]);
         \App\Models\Admin\Menu::factory()
             ->for($aboutParent, 'parents')
@@ -137,7 +178,7 @@ class AdminAuthSeeder extends Seeder
             ->for($contactResource, 'resource')
             ->create([
                 'name' => 'Копирайт',
-                'urn' => '/admin/contact/copyright'
+                'urn' => '/admin/contact/description'
             ]);
         \App\Models\Admin\Menu::factory()
             ->for($contactParent, 'parents')
@@ -161,13 +202,6 @@ class AdminAuthSeeder extends Seeder
             ->create([
                 'name' => 'Контакты',
                 'urn' => '/admin/footer/contacts'
-            ]);
-        \App\Models\Admin\Menu::factory()
-            ->for($footerParent, 'parents')
-            ->for($footerResource, 'resource')
-            ->create([
-                'name' => 'Социальные сети',
-                'urn' => '/admin/footer/socials'
             ]);
 
 
