@@ -11,11 +11,11 @@ class CaseResource extends BaseResource
     {
         return $this->filtrateFields([
             'id' => $this->id,
-            'slug' => $this->slug,
-            'description' => $this->description,
+            'slug' => (string)$this->slug,
+            'description' => (string)$this->description,
             'image' => (new ImageResource($this->image))->only(['id', 'url', 'name', 'path', 'created_at']),
-            'preview_url' => $this->preview_url,
-            'main_url' => $this->main_url,
+            'preview_url' => (string)$this->preview_url,
+            'main_url' => (string)$this->main_url,
             'user' => $this->user ? $this->user->login : null,
             'published' => (bool)$this->published,
             'published_at' => (string)date_custom_format($this->published_at, 'Y-m-d H:i:s'),
