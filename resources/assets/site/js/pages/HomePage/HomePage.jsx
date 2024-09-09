@@ -1,32 +1,33 @@
 import TopCases from "../../components/HomeComponents/TopCases";
 import RemainingCases from "../../components/HomeComponents/RemainingCases";
-import {useUsersQuery} from "../../redux/cases/casesApiSlice";
 import {useCallback, useState} from "react";
 import Contact from "../../components/Modal/Contact";
 import Navigation from "../../components/Navigation/Navigation";
+import {useVideoQuery} from "../../redux/cases/casesApiSlice";
+import NoDataPage from "../NoDataPage/NoDataPage";
+import Loader from "../../components/Loader/Loader";
 
 export default function HomePage() {
-    const {data: users, error: isUsersError, isLoading: isUsersLoading} = useUsersQuery()
+    const {data: videos, error: isVideosError, isLoading: isVideosLoading} = useVideoQuery()
     const [showModal, setShowModal] = useState(false);
 
     const handleShowModal = useCallback(() => setShowModal(true), []);
     const handleCloseModal = useCallback(() => setShowModal(false), []);
 
-
-    if (isUsersLoading) {
-        return <p>Loading...</p>;
+    if (isVideosLoading) {
+        return <Loader />;
     }
 
-    if (isUsersError) {
-        return <p>Failed to load data. Please try again later.</p>;
+    if (isVideosError) {
+        return <NoDataPage />;
     }
 
-    if (!users || users.length === 0) {
-        return <p>No data available.</p>;
+    if (!videos || videos.length === 0) {
+        return <NoDataPage />;
     }
 
-    const topCasesData = users.slice(0, 4);
-    const remainingCasesData = users.slice(4);
+    const topCasesData = videos.slice(0, 4);
+    const remainingCasesData = videos.slice(4);
 
     return (
         <>

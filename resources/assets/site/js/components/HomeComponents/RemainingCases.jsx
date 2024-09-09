@@ -1,31 +1,21 @@
 import Description from "../Description";
+import {useVimeoPlayers} from "../../hooks/useVimeoPlayers";
 
 export default function RemainingCases({cases}) {
+    useVimeoPlayers(cases);
+
     return (
         <div className="row no-gutters">
-            {cases.map((item, index) => {
-                if (index % 3 === 0) {
-                    return (
-                        <div className="col-lg-12" key={index}>
-                            <div
-                                className="home-grid__item overlay text-white d-flex justify-content-center align-items-center">
-                                <h2>{item.name}{index}</h2>
-                                <Description />
-                            </div>
+            {cases.map((video, index) => (
+                <div key={video.id} className={`${index % 3 === 0 ? 'col-xl-12' : 'col-xl-6'}`}>
+                    <div className="home-grid__item">
+                        <div className="video-container">
+                            <div id={`vimeo-${video.id}`} className={`vimeo-player ${index % 3 === 0 ? 'vimeo-player-top' : ''}`}></div>
                         </div>
-                    );
-                }
-
-                return (
-                    <div className="col-lg-6" key={index}>
-                        <div
-                            className="home-grid__item overlay text-white d-flex justify-content-center align-items-center">
-                            <h2>{item.name}{index}</h2>
-                            <Description />
-                        </div>
+                        <Description description={video.description}/>
                     </div>
-                );
-            })}
+                </div>
+            ))}
         </div>
     );
 }

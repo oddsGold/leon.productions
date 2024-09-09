@@ -10,7 +10,7 @@ const About = () => {
     const [aboutHeight, setAboutHeight] = useState(0);
     const [isRendered, setIsRendered] = useState(false);
     const aboutRef = useRef(null);
-    const isMobile = window.innerWidth <= 991;
+    const isMobile = window.innerWidth <= 1023;
 
     const updateAboutHeight = () => {
         const aboutElement = aboutRef.current;

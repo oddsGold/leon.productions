@@ -2,14 +2,15 @@ import { api } from "../operations.js";
 
 export const casesApiSlice = api.injectEndpoints({
     endpoints: builder => ({
-        users: builder.query({
+        video: builder.query({
             query: () => ({
-                url: '/users',
-            })
+                url: '/video/cases',
+            }),
+            transformResponse: (response, meta, arg) => response.data,
         })
     })
 });
 
 export const {
-    useUsersQuery,
+    useVideoQuery,
 } = casesApiSlice;
