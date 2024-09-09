@@ -33,7 +33,7 @@ class SiteSeeder extends Seeder
         if(!is_null($user)){
             auth()->guard()->setUser($user);
 
-            $this->dictionaryService->set('about_description', 'We are a post-production company based in Kyiv, Ukraine, specializing in commercials, movies, and design. Our focus is on producing post-production and visual effects projects of any complexity. Our services encompass the entire post-production process, from pre-production supervision and management to final project mastering, including all stages of editing, animation, VFX, and final grading.Founded in late 2023, our team comprises experienced and passionate professionals united by a common goal: to deliver exceptional results for our clients.');
+            $this->dictionaryService->set('about_description', '<p>We are a post-production company based in Kyiv, Ukraine, specializing in commercials, movies, and design. Our focus is on producing post-production and visual effects projects of any complexity.</p><p>Our services encompass the entire post-production process, from pre-production supervision and management to final project mastering, including all stages of editing, animation, VFX, and final grading.</p><p>Founded in late 2023, our team comprises experienced and passionate professionals united by a common goal: to deliver exceptional results for our clients.</p>');
             $this->dictionaryService->set('about_contacts_email', 'info@leon.productions');
             $this->dictionaryService->set('about_contacts_whatsapp', 'https://wa.me/380674533225');
             $this->dictionaryService->set('about_contacts_telegram', 'https://t.me/Ivan_Barannikov');
@@ -49,7 +49,7 @@ class SiteSeeder extends Seeder
             $this->dictionaryService->set('about_social_vimeo_link', 'https://vimeo.com/leonpostproduction');
             $this->dictionaryService->set('about_social_vimeo_published', true);
 
-            $this->dictionaryService->set('contact_description', 'VFX, CGI and even moreLet’s talk about it.');
+            $this->dictionaryService->set('contact_description', '<p>VFX, CGI and even more</p><p>Let’s talk about it.</p>');
             $this->dictionaryService->set('contact_contacts_email', 'info@leon.productions');
             $this->dictionaryService->set('contact_contacts_whatsapp', 'https://wa.me/380674533225');
             $this->dictionaryService->set('contact_contacts_telegram', 'https://t.me/Ivan_Barannikov');
