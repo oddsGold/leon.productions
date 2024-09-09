@@ -9,7 +9,7 @@ class SiteCaseCollection extends ResourceCollection
     public function toArray($request)
     {
         $this->collection->transform(function ($case) {
-            return (new CaseResource($case))->except(['user', 'published', 'published_at', 'published_to', 'position']);
+            return new SiteCaseResource($case);
         });
         return parent::toArray($request);
     }

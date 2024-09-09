@@ -9,7 +9,7 @@ class DescriptionRequest extends BaseRequest
     public function rules()
     {
         return [
-            'description' => 'required|string',
+            'description' => 'nullable|string',
         ];
     }
 }

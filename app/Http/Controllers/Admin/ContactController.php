@@ -20,13 +20,13 @@ class ContactController extends Controller
     public function showDescription()
     {
         $this->authorize('viewAny', $this->contactService->getResource());
-        return $this->contactService->getDescription();
+        return ['description' => (string)$this->contactService->getDescription()];
     }
 
     public function updateDescription(DescriptionRequest $request)
     {
         $this->authorize('update', $this->contactService->getResource());
-        return $this->contactService->updateDescription($request->description);
+        return ['description' => (string)$this->contactService->updateDescription($request->description)];
     }
 
     public function showContacts()

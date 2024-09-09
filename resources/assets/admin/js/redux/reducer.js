@@ -7,6 +7,15 @@ import adminMenuReducer from "../components/layouts/menu/redux/reducer";
 import dashboardReducer from "../components/layouts/dashboard/redux/reducer";
 import imageReducer from "../components/image/redux/reducer";
 import fileReducer from "../components/file/redux/reducer";
+import caseReducer from "../components/case/redux/reducer";
+import aboutServiceReducer from "../components/about/service/redux/reducer";
+import aboutContactReducer from "../components/about/contact/redux/reducer";
+import aboutDescriptionReducer from "../components/about/description/redux/reducer";
+import aboutSocialReducer from "../components/about/social/redux/reducer";
+import contactContactReducer from "../components/contact/contact/redux/reducer";
+import contactDescriptionReducer from "../components/contact/description/redux/reducer";
+import contactSocialReducer from "../components/contact/social/redux/reducer";
+import footerContactReducer from "../components/footer/contact/redux/reducer";
 
 
 export default combineReducers({
@@ -14,6 +23,21 @@ export default combineReducers({
     settings: settingsReducer,
     image: imageReducer,
     file: fileReducer,
+    case: caseReducer,
+    about: combineReducers({
+        service: aboutServiceReducer,
+        contact: aboutContactReducer,
+        description: aboutDescriptionReducer,
+        social: aboutSocialReducer
+    }),
+    contact: combineReducers({
+        contact: contactContactReducer,
+        description: contactDescriptionReducer,
+        social: contactSocialReducer
+    }),
+    footer: combineReducers({
+        contact: footerContactReducer
+    }),
     user: combineReducers({
         user: userReducer,
         role: roleReducer,

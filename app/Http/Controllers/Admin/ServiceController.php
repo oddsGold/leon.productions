@@ -23,37 +23,37 @@ class ServiceController extends Controller
 
     public function index()
     {
-        $this->authorize('viewAny', get_class($this->typeOfWorksService->getModel()));
+        $this->authorize('viewAny', $this->typeOfWorksService->getResource());
         return new ServiceCollection($this->typeOfWorksService->getAllWithPagination());
     }
 
     public function store(ServiceCreateRequest $request)
     {
-        $this->authorize('create', get_class($this->typeOfWorksService->getModel()));
+        $this->authorize('create', $this->typeOfWorksService->getResource());
         return new ServiceResource($this->typeOfWorksService->create($request->all()));
     }
 
     public function edit($id)
     {
-        $this->authorize('update', $this->typeOfWorksService->getModel());
+        $this->authorize('update', $this->typeOfWorksService->getResource());
         return new ServiceResource($this->typeOfWorksService->getById($id));
     }
 
     public function update(ServiceUpdateRequest $request, $id)
     {
-        $this->authorize('update', $this->typeOfWorksService->getModel());
+        $this->authorize('update', $this->typeOfWorksService->getResource());
         return new ServiceResource($this->typeOfWorksService->update($id, $request->all()));
     }
 
     public function destroy(Request $request, $id)
     {
-        $this->authorize('delete', $this->typeOfWorksService->getModel());
+        $this->authorize('delete', $this->typeOfWorksService->getResource());
         $this->typeOfWorksService->delete($id);
     }
 
     public function sort(ServiceSortRequest $request)
     {
-        $this->authorize('update', $this->typeOfWorksService->getModel());
+        $this->authorize('update', $this->typeOfWorksService->getResource());
         $this->typeOfWorksService->changeSortBySequence($request->sequence);
     }
 }

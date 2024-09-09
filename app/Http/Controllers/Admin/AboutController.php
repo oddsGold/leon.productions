@@ -20,13 +20,13 @@ class AboutController extends Controller
     public function showDescription()
     {
         $this->authorize('viewAny', $this->aboutService->getResource());
-        return $this->aboutService->getDescription();
+        return ['description' => (string)$this->aboutService->getDescription()];
     }
 
     public function updateDescription(DescriptionRequest $request)
     {
         $this->authorize('update', $this->aboutService->getResource());
-        return $this->aboutService->updateDescription($request->description);
+        return ['description' => (string)$this->aboutService->updateDescription($request->description)];
     }
 
     public function showContacts()

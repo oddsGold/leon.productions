@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Service\ServiceForSiteResource;
+use App\Http\Resources\Service\SiteServiceResource;
 use App\Services\About\AboutService;
 use App\Services\About\TypeOfWorksService;
 
@@ -22,7 +22,7 @@ class AboutController extends Controller
     {
         return [
             'description' => $this->aboutService->getDescription(),
-            'services' => ServiceForSiteResource::collection($this->typeOfWorksService->getAll()),
+            'services' => SiteServiceResource::collection($this->typeOfWorksService->getAll()),
             'contacts' => $this->aboutService->getContacts(),
             'socials' => $this->aboutService->getSocialMediaForSite(),
         ];

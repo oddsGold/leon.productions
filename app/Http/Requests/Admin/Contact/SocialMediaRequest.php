@@ -9,19 +9,15 @@ class SocialMediaRequest extends BaseRequest
     public function rules()
     {
         return [
-            'instagram_link' => 'required|string|max:400',
+            'instagram_link' => 'nullable|string|max:400',
             'instagram_published' => 'required|boolean',
-
-            'facebook_link' => 'required|string|max:400',
+            'facebook_link' => 'nullable|string|max:400',
             'facebook_published' => 'required|boolean',
-
-            'youtube_link' => 'required|string|max:400',
+            'youtube_link' => 'nullable|string|max:400',
             'youtube_published' => 'required|boolean',
-
-            'linkedin_link' => 'required|string|max:400',
+            'linkedin_link' => 'nullable|string|max:400',
             'linkedin_published' => 'required|boolean',
-
-            'vimeo_link' => 'required|string|max:400',
+            'vimeo_link' => 'nullable|string|max:400',
             'vimeo_published' => 'required|boolean',
         ];
     }
