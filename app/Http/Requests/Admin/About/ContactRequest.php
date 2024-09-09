@@ -9,10 +9,10 @@ class ContactRequest extends BaseRequest
     public function rules()
     {
         return [
-            'email' => 'required|string|max:150|email:rfc',
-            'whatsapp' => 'required|string',
-            'telegram' => 'required|string',
-            'phone' => 'required|string',
+            'email' => 'nullable|string|max:150|email:rfc',
+            'whatsapp' => 'nullable|string',
+            'telegram' => 'nullable|string',
+            'phone' => 'nullable|string',
         ];
     }
 }
