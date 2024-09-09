@@ -4,7 +4,7 @@ namespace App\Http\Resources\Service;
 
 use App\Http\Resources\BaseResource;
 
-class ServiceForSiteResource extends BaseResource
+class SiteServiceResource extends BaseResource
 {
     public function toArray($request)
     {
