@@ -28,4 +28,9 @@ class TypeOfWorksService extends CRUDService implements CRUD
         return $model;
     }
 
+    public function getResource(): string
+    {
+        return 'App\Models\About';
+    }
+
 }

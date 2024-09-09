@@ -45,12 +45,14 @@ Route::middleware(['auth.ips'])->group(function(){
 
         Route::get('cases', [App\Http\Controllers\Admin\CaseController::class, 'index']);
         Route::get('cases/{id}', [App\Http\Controllers\Admin\CaseController::class, 'edit']);
+        Route::post('cases/sort', [App\Http\Controllers\Admin\CaseController::class, 'sort']);
         Route::post('cases/{id}', [App\Http\Controllers\Admin\CaseController::class, 'update']);
         Route::delete('cases/{id}', [App\Http\Controllers\Admin\CaseController::class, 'destroy']);
         Route::post('cases', [App\Http\Controllers\Admin\CaseController::class, 'store']);
 
         Route::get('about/services', [App\Http\Controllers\Admin\ServiceController::class, 'index']);
         Route::get('about/services/{id}', [App\Http\Controllers\Admin\ServiceController::class, 'edit']);
+        Route::post('about/services/sort', [App\Http\Controllers\Admin\ServiceController::class, 'sort']);
         Route::post('about/services/{id}', [App\Http\Controllers\Admin\ServiceController::class, 'update']);
         Route::delete('about/services/{id}', [App\Http\Controllers\Admin\ServiceController::class, 'destroy']);
         Route::post('about/services', [App\Http\Controllers\Admin\ServiceController::class, 'store']);
