@@ -4,7 +4,7 @@
 - composer install
 - copy .env.example .env
 - php artisan key:generate
-- php artisan storage:link
+- php artisan storage:link (--relative in Docker)
 - php artisan migrate
 - php artisan db:seed
 - npm install
