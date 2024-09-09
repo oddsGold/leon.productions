@@ -8,8 +8,12 @@
 
         <section class="error">
             <div class="container">
-                <h1 class="h1 text-center">404</h1>
-                <h3 class="text-center h3">Сторінку не знайдено!</h3>
+                <div class="error-content">
+                    <p>O<span>o</span>ps</p>
+                    <h1>404 - page not found</h1>
+                    <p class="error-info">The page you are looking for might have been removed had its name changed or is  temporarily unavailable.</p>
+                    <a href="/">go to homepage</a>
+                </div>
             </div>
         </section>
     </main>

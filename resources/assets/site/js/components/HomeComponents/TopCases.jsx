@@ -1,10 +1,18 @@
+import React from 'react';
 import Talk from "./Talk";
 import Description from "../Description";
 import {useVimeoPlayers} from "../../hooks/useVimeoPlayers";
+import {useEffect} from "react";
 
-export default function TopCases({cases, handleShowModal}) {
+export default function TopCases({ cases, handleShowModal }) {
     useVimeoPlayers(cases);
 
+    useEffect(() => {
+        console.log('TopCases mounted');
+        return () => {
+            console.log('TopCases unmounted');
+        };
+    }, []);
 
     return (
         <>
@@ -38,4 +46,4 @@ export default function TopCases({cases, handleShowModal}) {
             </div>
         </>
     );
-}
+};

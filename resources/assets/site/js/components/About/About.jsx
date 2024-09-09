@@ -1,10 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectVisible } from '../../redux/about/selectors';
-import { hideAbout } from '../../redux/about/slice';
+import {hideAbout, toggleAbout} from '../../redux/about/slice';
 import AboutContent from "./AboutContent";
 
-const About = () => {
+const About = ({aboutData}) => {
     const isVisible = useSelector(selectVisible);
     const dispatch = useDispatch();
     const [aboutHeight, setAboutHeight] = useState(0);
@@ -96,7 +96,7 @@ const About = () => {
 
     return (
         <div className={`about ${isRendered ? 'about-visible' : 'about-hidden'}`} ref={aboutRef}>
-           <AboutContent handleClose={handleClose} />
+           <AboutContent aboutData={aboutData} handleClose={handleClose} />
         </div>
     );
 };

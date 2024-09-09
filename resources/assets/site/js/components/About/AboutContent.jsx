@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function AboutContent({handleClose}) {
+export default function AboutContent({aboutData, handleClose}) {
+    console.log(aboutData)
     return (
         <div className={`about-content`}>
             <span className="about-content-btn" onClick={handleClose}>&#10006;</span>

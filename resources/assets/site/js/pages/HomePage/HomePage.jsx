@@ -14,17 +14,8 @@ export default function HomePage() {
     const handleShowModal = useCallback(() => setShowModal(true), []);
     const handleCloseModal = useCallback(() => setShowModal(false), []);
 
-    if (isVideosLoading) {
-        return <Loader />;
-    }
-
-    if (isVideosError) {
-        return <NoDataPage />;
-    }
-
-    if (!videos || videos.length === 0) {
-        return <NoDataPage />;
-    }
+    if (isVideosLoading) return <Loader />;
+    if (isVideosError || !videos || videos.length === 0) return <NoDataPage />;
 
     const topCasesData = videos.slice(0, 4);
     const remainingCasesData = videos.slice(4);

@@ -6,7 +6,7 @@ export const casesApiSlice = api.injectEndpoints({
             query: () => ({
                 url: '/video/cases',
             }),
-            transformResponse: (response, meta, arg) => response.data,
+            transformResponse: (response) => response.data,
         })
     })
 });
