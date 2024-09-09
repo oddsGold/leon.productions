@@ -42,7 +42,7 @@ class CaseService extends CRUDService implements CRUD
         $model->slug = $this->fillSlug($model->slug, $model->description);
         $model->user()->associate(auth()->user());
         if(isset($data['image']) && $data['image']){
-            $model->image()->associate($this->imageService->getById($data['preview']['id'] ?? null));
+            $model->image()->associate($this->imageService->getById($data['image']['id'] ?? null));
         }
         if(isset($data['image']) && is_null($data['image']) && !is_null($model->image)){
             $model->image()->dissociate();
