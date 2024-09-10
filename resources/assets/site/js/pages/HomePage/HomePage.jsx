@@ -8,7 +8,7 @@ import NoDataPage from "../NoDataPage/NoDataPage";
 import Loader from "../../components/Loader/Loader";
 
 export default function HomePage() {
-    const {data: videos, error: isVideosError, isLoading: isVideosLoading} = useVideoQuery()
+    const {data: videos, error: isVideosError, isLoading: isVideosLoading} = useVideoQuery();
     const [showModal, setShowModal] = useState(false);
 
     const handleShowModal = useCallback(() => setShowModal(true), []);
