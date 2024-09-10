@@ -3,14 +3,16 @@ import Talk from "./Talk";
 import Description from "../Description";
 import {useVimeoPlayers} from "../../hooks/useVimeoPlayers";
 
-export default function TopCases({ cases, handleShowModal }) {
+export default function TopCases({cases, handleShowModal, handleShowOverlay}) {
     useVimeoPlayers(cases);
 
     return (
         <>
             {cases.length > 0 && (
                 <div
-                    className="home-grid__item home-grid__item--first d-flex flex-column justify-content-center align-items-center">
+                    className="home-grid__item home-grid__item__overlay home-grid__item--first d-flex flex-column justify-content-center align-items-center"
+                    onClick={() => handleShowOverlay(cases[0])}
+                >
                     <div className="video-container">
                         <div id={`vimeo-${cases[0].id}`} className="vimeo-player"></div>
                     </div>
