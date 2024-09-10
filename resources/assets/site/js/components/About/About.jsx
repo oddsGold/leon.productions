@@ -49,7 +49,9 @@ const About = ({aboutData}) => {
             if (logoElement) {
                 if (isMobile) {
                     logoElement.style.top = '30px';
+                    logoElement.style.bottom = 'auto';
                 } else {
+                    logoElement.style.top = 'auto';
                     logoElement.style.bottom = '97px';
                 }
             }
@@ -57,7 +59,9 @@ const About = ({aboutData}) => {
             if (menuElement) {
                 if (isMobile) {
                     menuElement.style.bottom = '52px';
+                    menuElement.style.top = 'auto';
                 } else {
+                    menuElement.style.bottom = 'auto';
                     menuElement.style.top = '30px';
                 }
             }

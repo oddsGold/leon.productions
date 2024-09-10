@@ -15,7 +15,7 @@ export const useVimeoPlayers = (cases) => {
                         muted: true,
                     });
 
-                    const videoElement = document.querySelector(`#vimeo-${video.id}`).parentElement;
+                    const videoElement = document.querySelector(`#vimeo-${video.id}`).closest('.home-grid__item');
                     let isPlaying = false;
 
                     videoElement.addEventListener('mouseover', () => {

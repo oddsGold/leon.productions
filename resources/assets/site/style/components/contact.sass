@@ -49,6 +49,7 @@
             height: 100%
             background: url("../images/contact-modal-bg.png") no-repeat 50% 50%
         .modal-header
+            z-index: 1
             .modal-title
                 text-transform: uppercase
                 color: rgba(255, 255, 255, 1)
@@ -79,6 +80,9 @@
                 line-height: 2.25rem
                 a
                     color: rgba(245, 165, 7, 1)
+                p
+                    > a
+                        text-decoration: none
             .modal-body-social
                 padding-top: 80px
                 a
@@ -91,7 +95,26 @@
 @include respond-to('desktop-1280')
     .contact-modal
         .modal-content
+            &:before
+                background-size: cover
+            .modal-body
+                .modal-body-info
+                    flex-direction: column
+                    font-size: 1.5rem
+                    line-height: 1.8rem
+                    .modal-body-info__padding
+                        padding: 20px 0
+                .modal-body-social
+                    a
+                        padding: 0 13px
+
+@include respond-to('tablet')
+    .contact-modal
+        .modal-content
             padding: 60px 20px 70px 20px
+            &:before
+                background-size: contain
+                background: url(http://[::1]:5173/resources/assets/site/images/contact-modal-bg.png) no-repeat 100% 0
             .btn-close__mobile
                 position: absolute
                 top: 10px

@@ -6,9 +6,11 @@ import Navigation from "../../components/Navigation/Navigation";
 import {useVideoQuery} from "../../redux/cases/casesApiSlice";
 import NoDataPage from "../NoDataPage/NoDataPage";
 import Loader from "../../components/Loader/Loader";
+import {useContactsQuery} from "../../redux/contacts/contactsApiSlice";
 
 export default function HomePage() {
     const {data: videos, error: isVideosError, isLoading: isVideosLoading} = useVideoQuery();
+    const {data: contactsData, error: isContactsError, isLoading: isContactsLoading} = useContactsQuery();
     const [showModal, setShowModal] = useState(false);
 
     const handleShowModal = useCallback(() => setShowModal(true), []);
@@ -28,11 +30,7 @@ export default function HomePage() {
                 <RemainingCases cases={remainingCasesData}/>
             )}
             {showModal && (
-                <Contact
-                    title="Contact"
-                    body="Modal body text goes here."
-                    onClose={handleCloseModal}
-                />
+                !isContactsLoading && !isContactsError &&  <Contact contactsData={contactsData} title="Contact" onClose={handleCloseModal} />
             )}
         </>
     );

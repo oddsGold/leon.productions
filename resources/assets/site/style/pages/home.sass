@@ -1,11 +1,4 @@
-.home-grid__item
-    position: relative
-    background: #141414
-    overflow: hidden
-    z-index: 1
-    height: 56vw
-    //background: url("../images/pic.png")no-repeat 50% 50%
-    //background-size: cover
+.home-grid__item__overlay
     &:before
         content: ""
         position: absolute
@@ -18,8 +11,14 @@
         -o-transition: .3s linear opacity
         -moz-transition: .3s linear opacity
         transition: .3s linear opacity
-        z-index: 3
+        z-index: 1000
         opacity: 1
+.home-grid__item
+    position: relative
+    background: #141414
+    overflow: hidden
+    z-index: 1
+    height: 56vw
     &:hover
         &:before
             opacity: 0
