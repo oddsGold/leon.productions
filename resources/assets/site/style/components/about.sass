@@ -114,6 +114,33 @@ body
                 padding-left: 0
             &:last-child
                 padding-right: 0
+@include respond-to('desktop-1600')
+    .about
+        .about-content
+            padding: 17px 30px 30px 30px
+            .about-content-title
+                h3
+                    font-size: 3rem
+                    line-height: 3.75rem
+            .about-content-row
+                padding: 10px 0 50px 0
+                .about-content-row-text
+                    padding-top: 10px
+                    padding-right: 20px
+                    p
+                        font-size: 1.125rem
+                        line-height: 1.25rem
+                .about-content-row-grid
+                    row-gap: 20px
+                    column-gap: 50px
+                    padding-top: 10px
+                    .grid-item
+                        p
+                            font-size: 1.125rem
+                            line-height: 1.25rem
+        .about-content-contacts
+            font-size: 1.25rem
+            line-height: 1.625rem
 
 @include respond-to('tablet')
     .about

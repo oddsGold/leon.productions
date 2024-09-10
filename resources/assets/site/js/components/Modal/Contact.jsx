@@ -40,7 +40,7 @@ const Contact = ({ contactsData, title, onClose }) => {
                     </div>
                     <div className="modal-body-info">
                         <a href={`mailto:${contactsData.contacts.email}`}>{contactsData.contacts.email}</a>
-                        <p className="about-content-contacts__padding">
+                        <p className="modal-body-info__padding">
                             <a href={contactsData.contacts.whatsapp}>Whatsapp</a> | <a
                             href={contactsData.contacts.telegram}>Telegram</a>
                         </p>
