@@ -7,6 +7,7 @@ export const useVimeoPlayersFull = (cases) => {
     const progressBarRangeRefs = useRef({});
     const progressBarFilledRefs = useRef({});
     const intervalRefs = useRef({});
+    const durationRefs = useRef({});
 
     useEffect(() => {
         cases.forEach((video) => {
@@ -20,7 +21,7 @@ export const useVimeoPlayersFull = (cases) => {
 
                 if (videoElement) {
                     videoRefs.current[video.id] = new Player(videoElement, {
-                        url: video.preview_url,
+                        url: video.main_url,
                         controls: false,
                         loop: true,
                         muted: true,
@@ -30,29 +31,28 @@ export const useVimeoPlayersFull = (cases) => {
                     progressBarRangeRefs.current[video.id] = progressBarRange;
                     progressBarFilledRefs.current[video.id] = progressBarFilled;
 
-                    let durationSeconds = 0;
-
                     const vimeoPlayer = videoRefs.current[video.id];
 
                     vimeoPlayer.ready().then(() => {
-                        vimeoPlayer.getDuration().then((duration) => {
-                            durationSeconds = duration;
-                            if (progressBarPointRefs.current[video.id]) {
-                                progressBarPointRefs.current[video.id].max = duration;
-                            }
-                            if (progressBarRangeRefs.current[video.id]) {
-                                progressBarRangeRefs.current[video.id].max = duration;
-                            }
-                        });
+                        return vimeoPlayer.getDuration();
+                    }).then((duration) => {
+                        durationRefs.current[video.id] = duration;
+                        if (progressBarPointRefs.current[video.id]) {
+                            progressBarPointRefs.current[video.id].max = duration;
+                        }
+                        if (progressBarRangeRefs.current[video.id]) {
+                            progressBarRangeRefs.current[video.id].max = duration;
+                        }
 
                         vimeoPlayer.on('play', () => {
                             intervalRefs.current[video.id] = setInterval(() => {
                                 vimeoPlayer.getCurrentTime().then((seconds) => {
+                                    const duration = durationRefs.current[video.id];
                                     if (progressBarPointRefs.current[video.id]) {
                                         progressBarPointRefs.current[video.id].value = seconds;
                                     }
                                     if (progressBarFilledRefs.current[video.id]) {
-                                        progressBarFilledRefs.current[video.id].style.width = `${(seconds / durationSeconds) * 100}%`;
+                                        progressBarFilledRefs.current[video.id].style.width = `${(seconds / duration) * 100}%`;
                                     }
                                 }).catch(error => console.error("Error getting current time:", error));
                             }, 100);
@@ -80,7 +80,8 @@ export const useVimeoPlayersFull = (cases) => {
                                 progressBarPointRefs.current[video.id].value = currentTime;
                             }
                             if (progressBarFilledRefs.current[video.id]) {
-                                progressBarFilledRefs.current[video.id].style.width = `${(currentTime * 100) / durationSeconds}%`;
+                                const duration = durationRefs.current[video.id]; // Используйте значение из durationRefs
+                                progressBarFilledRefs.current[video.id].style.width = `${(currentTime * 100) / duration}%`;
                             }
                         });
                     }
