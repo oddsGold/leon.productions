@@ -1,7 +1,7 @@
 @extends('site/base')
 
-@section('title', '')
-@section('description', '')
+@section('title', 'LEON POST PRODUCTION')
+@section('description', 'LEON POST PRODUCTION')
 
 
 @section('style')
