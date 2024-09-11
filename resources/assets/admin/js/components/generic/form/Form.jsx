@@ -1,7 +1,7 @@
 import React from "react";
 import {Form, Formik} from "formik";
 
-export default function GenericForm ({current, defaultCurrent, onSubmit, enableReinitialize = true, validation, children}){
+export default function GenericForm ({current, defaultCurrent, onSubmit, enableReinitialize = true, validation, children, withoutForm = false}){
 
 
     return (
@@ -18,7 +18,7 @@ export default function GenericForm ({current, defaultCurrent, onSubmit, enableR
                     enableReinitialize={enableReinitialize}
                     validationSchema={validation}
                 >
-                    {({ isSubmitting }) => (
+                    {withoutForm ? children : ({ isSubmitting}) => (
                         <Form>
                             {children}
                             <div>

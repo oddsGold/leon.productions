@@ -10,6 +10,7 @@ import LoadingGeneric from "../../generic/Loading";
 import GenericForm from "../../generic/form/Form";
 import Check from "../../generic/form/Check";
 import Text from "../../generic/form/Text";
+import {Form} from "formik";
 
 const Edit = ({current, fetching, fetchItemAndSetCurrent, updateItemAndSetCurrent, clearCurrentItem}) => {
 
@@ -51,6 +52,7 @@ const Edit = ({current, fetching, fetchItemAndSetCurrent, updateItemAndSetCurren
                     vimeo_published: true,
                 }}
                 onSubmit={updateItemAndSetCurrent}
+                withoutForm={true}
                 validation={Yup.object({
                     instagram_link: Yup.string().max(400, 'Максимально допустиммо 400 символов').nullable(),
                     facebook_link: Yup.string().max(400, 'Максимально допустиммо 400 символов').nullable(),
@@ -60,80 +62,106 @@ const Edit = ({current, fetching, fetchItemAndSetCurrent, updateItemAndSetCurren
                 })}
             >
 
-                <div className="row mb-3">
-                    <div className="col-md-3 d-flex align-items-center">
-                        <Check
-                            name={"instagram_published"}
-                            title={"Опубликовать"}
-                        />
-                    </div>
-                    <div className="col-md-9">
-                        <Text
-                            name={"instagram_link"}
-                            title={"Ссылка на instagram"}
-                        />
-                    </div>
-                </div>
+                {({ isSubmitting, values}) => (
+                    <Form>
 
-                <div className="row mb-3">
-                    <div className="col-md-3 d-flex align-items-center">
-                        <Check
-                            name={"facebook_published"}
-                            title={"Опубликовать"}
-                        />
-                    </div>
-                    <div className="col-md-9">
-                        <Text
-                            name={"facebook_link"}
-                            title={"Ссылка на facebook"}
-                        />
-                    </div>
-                </div>
+                        <div className="row mb-3">
+                            <div className="col">
+                                <div className="social-element">
+                                    <div className="check-wrapper">
+                                        <Check
+                                            name={"instagram_published"}
+                                            title={"Показывать на сайте"}
+                                        />
+                                    </div>
+                                    <Text
+                                        name={"instagram_link"}
+                                        title={"Ссылка на instagram"}
+                                        disabled={!values.instagram_published}
+                                    />
+                                </div>
+                            </div>
+                        </div>
 
-                <div className="row mb-3">
-                    <div className="col-md-3 d-flex align-items-center">
-                        <Check
-                            name={"youtube_published"}
-                            title={"Опубликовать"}
-                        />
-                    </div>
-                    <div className="col-md-9">
-                        <Text
-                            name={"youtube_link"}
-                            title={"Ссылка на youtube"}
-                        />
-                    </div>
-                </div>
+                        <div className="row mb-3">
+                            <div className="col">
+                                <div className="social-element">
+                                    <div className="check-wrapper">
+                                        <Check
+                                            name={"facebook_published"}
+                                            title={"Показывать на сайте"}
+                                        />
+                                    </div>
+                                    <Text
+                                        name={"facebook_link"}
+                                        title={"Ссылка на facebook"}
+                                        disabled={!values.facebook_published}
+                                    />
+                                </div>
+                            </div>
+                        </div>
 
-                <div className="row mb-3">
-                    <div className="col-md-3 d-flex align-items-center">
-                        <Check
-                            name={"linkedin_published"}
-                            title={"Опубликовать"}
-                        />
-                    </div>
-                    <div className="col-md-9">
-                        <Text
-                            name={"linkedin_link"}
-                            title={"Ссылка на linkedin"}
-                        />
-                    </div>
-                </div>
+                        <div className="row mb-3">
+                            <div className="col">
+                                <div className="social-element">
+                                    <div className="check-wrapper">
+                                        <Check
+                                            name={"youtube_published"}
+                                            title={"Показывать на сайте"}
+                                        />
+                                    </div>
+                                    <Text
+                                        name={"youtube_link"}
+                                        title={"Ссылка на youtube"}
+                                        disabled={!values.youtube_published}
+                                    />
+                                </div>
+                            </div>
+                        </div>
 
-                <div className="row mb-3">
-                    <div className="col-md-3 d-flex align-items-center">
-                        <Check
-                            name={"vimeo_published"}
-                            title={"Опубликовать"}
-                        />
-                    </div>
-                    <div className="col-md-9">
-                        <Text
-                            name={"vimeo_link"}
-                            title={"Ссылка на vimeo"}
-                        />
-                    </div>
-                </div>
+                        <div className="row mb-3">
+                            <div className="col">
+                                <div className="social-element">
+                                    <div className="check-wrapper">
+                                        <Check
+                                            name={"linkedin_published"}
+                                            title={"Показывать на сайте"}
+                                        />
+                                    </div>
+                                    <Text
+                                        name={"linkedin_link"}
+                                        title={"Ссылка на linkedin"}
+                                        disabled={!values.linkedin_published}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row mb-3">
+                            <div className="col">
+                                <div className="social-element">
+                                    <div className="check-wrapper">
+                                        <Check
+                                            name={"vimeo_published"}
+                                            title={"Показывать на сайте"}
+                                        />
+                                    </div>
+                                    <Text
+                                        name={"vimeo_link"}
+                                        title={"Ссылка на vimeo"}
+                                        disabled={!values.vimeo_published}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button type="submit" className="btn btn-success" disabled={isSubmitting}>
+                                Сохранить
+                            </button>
+                        </div>
+                    </Form>
+                )}
 
             </GenericForm>
         </div>

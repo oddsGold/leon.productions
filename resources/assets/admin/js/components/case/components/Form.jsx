@@ -1,10 +1,12 @@
 import React from "react";
 import * as Yup from 'yup';
+import {Form as FormikForm} from "formik";
 import Text from "../../generic/form/Text";
 import GenericForm from "../../generic/form/Form";
 import TextArea from "../../generic/form/TextArea";
 import Image from "../../generic/form/Image";
 import CheckDateFromTo from "../../generic/form/CheckDateFromTo";
+import VideoPlayerPreview from "./VideoPlayerPreview";
 
 export default function Form ({current = null, actionOnSubmit}){
 
@@ -22,6 +24,7 @@ export default function Form ({current = null, actionOnSubmit}){
                 published_to: ''
             }}
             onSubmit={actionOnSubmit}
+            withoutForm={true}
             validation={Yup.object({
                 description: Yup.string()
                     .max(255, 'Максимально допустиммо 255 символов')
@@ -35,41 +38,64 @@ export default function Form ({current = null, actionOnSubmit}){
             })}
         >
 
-            <TextArea
-                name={"description"}
-                title={"Описание"}
-                helper={"Введите описание"}
-                required={true}
-            />
+            {({ isSubmitting, values}) => (
+                <FormikForm>
 
-            <Text
-                name={"preview_url"}
-                title={"Preview url vimeo"}
-                helper={"Ссылка на превью видео на сервисе вимео"}
-            />
+                    <TextArea
+                        name={"description"}
+                        title={"Описание"}
+                        helper={"Введите описание"}
+                        required={true}
+                    />
 
-            <Text
-                name={"main_url"}
-                title={"Main url vimeo"}
-                helper={"Ссылка на основное видео на сервисе вимео"}
-                required={true}
-            />
+                    <div className="case-video-element">
+                        <Text
+                            name={"preview_url"}
+                            title={"Preview url vimeo"}
+                            helper={"Ссылка на превью видео на сервисе вимео"}
+                        />
+                        <div className="case-video-preview-wrapper">
+                            <VideoPlayerPreview
+                                link={values.preview_url}
+                            />
+                        </div>
+                    </div>
 
+                    <div className="case-video-element">
+                        <Text
+                            name={"main_url"}
+                            title={"Main url vimeo"}
+                            helper={"Ссылка на основное видео на сервисе вимео"}
+                            required={true}
+                        />
+                        <div className="case-video-preview-wrapper">
+                            <VideoPlayerPreview
+                                link={values.main_url}
+                            />
+                        </div>
+                    </div>
 
-            <Image
-                name={"image"}
-                title={"Превью картинка"}
-            />
+                    <Image
+                        name={"image"}
+                        title={"Превью картинка"}
+                    />
 
-            <CheckDateFromTo
-                title={"Опубликовать"}
-                nameCheck={"published"}
-                nameDateFrom={"published_at"}
-                nameDateTo={"published_to"}
-            />
+                    <CheckDateFromTo
+                        title={"Опубликовать"}
+                        nameCheck={"published"}
+                        nameDateFrom={"published_at"}
+                        nameDateTo={"published_to"}
+                    />
+
+                    <div>
+                        <button type="submit" className="btn btn-success" disabled={isSubmitting}>
+                            Сохранить
+                        </button>
+                    </div>
+                </FormikForm>
+            )}
 
         </GenericForm>
     );
-
 
 }
