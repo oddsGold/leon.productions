@@ -22,6 +22,7 @@ class ImageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Vite::useCspNonce();
         Vite::macro(
             'image',
             fn ($asset) => $this
