@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Contact = ({ title, body, onClose }) => {
+const Contact = ({ contactsData, title, onClose }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -36,30 +36,22 @@ const Contact = ({ title, body, onClose }) => {
                 </div>
                 <div className="modal-body">
                     <div className="modal-body-description">
-                        <p>VFX, CGI and even more</p>
-                        <p>Let’s talk about it.</p>
+                        <div dangerouslySetInnerHTML={{__html: contactsData.description}}/>
                     </div>
                     <div className="modal-body-info">
-                        <a href="mailto:info@leon.productions">info@leon.productions</a>
-                        <p className="modal-body-info__padding">Whatsapp | Telegram</p>
-                        <p>+380674533225</p>
+                        <a href={`mailto:${contactsData.contacts.email}`}>{contactsData.contacts.email}</a>
+                        <p className="modal-body-info__padding">
+                            <a href={contactsData.contacts.whatsapp}>Whatsapp</a> | <a
+                            href={contactsData.contacts.telegram}>Telegram</a>
+                        </p>
+                        <p>{contactsData.contacts.phone}</p>
                     </div>
                     <div className="modal-body-social">
-                        <a href="">
-                            <img src="/images/instagram.svg" alt="instagram"/>
-                        </a>
-                        <a href="">
-                            <img src="/images/fb.svg" alt="fb"/>
-                        </a>
-                        <a href="">
-                            <img src="/images/yt.svg" alt="yt"/>
-                        </a>
-                        <a href="">
-                            <img src="/images/linkedin.svg" alt="linkedin"/>
-                        </a>
-                        <a href="">
-                            <img src="/images/v.svg" alt="v"/>
-                        </a>
+                        {contactsData.socials.map((social, index) => (
+                            <a href={social.link} key={index}>
+                                <img src={social.icon} alt={social.icon.split('/').pop()}/>
+                            </a>
+                        ))}
                     </div>
                 </div>
             </div>

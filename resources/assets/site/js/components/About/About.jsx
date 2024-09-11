@@ -1,10 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectVisible } from '../../redux/about/selectors';
-import { hideAbout } from '../../redux/about/slice';
+import {hideAbout, toggleAbout} from '../../redux/about/slice';
 import AboutContent from "./AboutContent";
 
-const About = () => {
+const About = ({aboutData}) => {
     const isVisible = useSelector(selectVisible);
     const dispatch = useDispatch();
     const [aboutHeight, setAboutHeight] = useState(0);
@@ -49,7 +49,9 @@ const About = () => {
             if (logoElement) {
                 if (isMobile) {
                     logoElement.style.top = '30px';
+                    logoElement.style.bottom = 'auto';
                 } else {
+                    logoElement.style.top = 'auto';
                     logoElement.style.bottom = '97px';
                 }
             }
@@ -57,7 +59,9 @@ const About = () => {
             if (menuElement) {
                 if (isMobile) {
                     menuElement.style.bottom = '52px';
+                    menuElement.style.top = 'auto';
                 } else {
+                    menuElement.style.bottom = 'auto';
                     menuElement.style.top = '30px';
                 }
             }
@@ -96,7 +100,7 @@ const About = () => {
 
     return (
         <div className={`about ${isRendered ? 'about-visible' : 'about-hidden'}`} ref={aboutRef}>
-           <AboutContent handleClose={handleClose} />
+           <AboutContent aboutData={aboutData} handleClose={handleClose} />
         </div>
     );
 };
