@@ -44,6 +44,8 @@ export const useVimeoPlayersFull = (cases) => {
                             progressBarRangeRefs.current[video.id].max = duration;
                         }
 
+                        return vimeoPlayer.play();
+                    }).then(() => {
                         vimeoPlayer.on('play', () => {
                             intervalRefs.current[video.id] = setInterval(() => {
                                 vimeoPlayer.getCurrentTime().then((seconds) => {

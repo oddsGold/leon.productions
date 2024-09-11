@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import Description from "./Description";
 import { useVimeoPlayersFull } from "../hooks/useVimeoPlayersFull";
 import VideoControls from "./Cases/VideoControls";
 

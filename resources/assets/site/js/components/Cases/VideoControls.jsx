@@ -14,7 +14,7 @@ export default function VideoControls({
                                           selectedData,
                                           description
                                       }) {
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(true);
     const [isMuted, setIsMuted] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [info, setInfo] = useState(false);
@@ -27,9 +27,7 @@ export default function VideoControls({
                 try {
                     const duration = await player.getDuration();
                     setVideoDuration(duration);
-                } catch (error) {
-                    console.error('Error fetching video duration:', error);
-                }
+                } catch (error) {}
             }
         };
 
@@ -45,25 +43,19 @@ export default function VideoControls({
 
     const handlePlayClick = () => {
         setIsPlaying(true);
-        if (videoPlayer) {
-            videoPlayer.current[selectedData.id].play();
-        }
+        videoPlayer?.current[selectedData.id].play();
     };
 
     const handlePauseClick = () => {
         setIsPlaying(false);
-        if (videoPlayer) {
-            videoPlayer.current[selectedData.id].pause();
-        }
+        videoPlayer?.current[selectedData.id].pause();
     };
 
     const handleMuteClick = () => {
         setIsMuted(!isMuted);
-        if (videoPlayer) {
-            videoPlayer.current[selectedData.id].getMuted().then(muted => {
-                videoPlayer.current[selectedData.id].setMuted(!muted);
-            });
-        }
+        videoPlayer?.current[selectedData.id].getMuted().then(muted => {
+            videoPlayer.current[selectedData.id].setMuted(!muted);
+        });
     };
 
     const handleFullscreenClick = () => {

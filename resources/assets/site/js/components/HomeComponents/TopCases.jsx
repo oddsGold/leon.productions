@@ -23,7 +23,10 @@ export default function TopCases({cases, handleShowModal, handleShowOverlay}) {
             <div className="row no-gutters">
                 {cases.slice(1).map((video) => (
                     <div key={video.id} className="col-xl-6">
-                        <div className="home-grid__item home-grid__item__overlay"  onClick={() => handleShowOverlay(video)}>
+                        <div
+                            className="home-grid__item home-grid__item__overlay"
+                            onClick={() => handleShowOverlay(video)}
+                        >
                             <div className="video-container">
                                 <div id={`vimeo-${video.id}`} className="vimeo-player"></div>
                             </div>
