@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import TopCases from '../../components/HomeComponents/TopCases';
 import RemainingCases from '../../components/HomeComponents/RemainingCases';
 import Contact from '../../components/Modal/Contact';
@@ -18,7 +18,7 @@ export default function HomePage() {
     const [showOverlay, setShowOverlay] = useState(false);
     const [selectedData, setSelectedData] = useState(null);
     const [fadeIn, setFadeIn] = useState(false);
-    const location = useLocation();
+    const urlParams = useParams();
 
     const handleShowModal = useCallback(() => setShowModal(true), []);
     const handleCloseModal = useCallback(() => setShowModal(false), []);
@@ -36,24 +36,21 @@ export default function HomePage() {
     }, []);
 
     useEffect(() => {
-        const queryParams = new URLSearchParams(location.search);
-        const slugFromUrl = queryParams.get('slug');
-
-        if (slugFromUrl && videos) {
-            const foundVideo = videos.find(video => video.slug === slugFromUrl);
+        if (urlParams.slug && videos) {
+            const foundVideo = videos.find(video => video.slug === urlParams.slug);
             if (foundVideo) {
                 setSelectedData(foundVideo);
                 setShowOverlay(true);
             }
         }
-    }, [location.search, videos]);
+    }, [videos]);
 
     useEffect(() => {
         if (showOverlay) {
-            window.history.pushState({}, '', `?slug=${selectedData?.slug}`);
+            window.history.pushState({}, '', `/cases/${selectedData?.slug}`);
             document.body.classList.add('no-scroll');
         } else {
-            window.history.pushState({}, '', window.location.pathname);
+            window.history.pushState({}, '', '/');
             document.body.classList.remove('no-scroll');
         }
     }, [showOverlay, selectedData]);
