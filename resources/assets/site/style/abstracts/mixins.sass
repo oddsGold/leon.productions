@@ -14,6 +14,9 @@
     @if $breakpoint == 'small-mobile'
         @media (max-width: 430px)
             @content
+    @if $breakpoint == 'mobile'
+        @media (max-width: 490px)
+            @content
 
 
 @mixin font-style($family, $weight: 400, $style: normal, $optical-sizing: auto)
