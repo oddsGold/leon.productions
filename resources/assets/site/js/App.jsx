@@ -1,7 +1,6 @@
 import {Route, Routes} from "react-router-dom";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage/HomePage";
-import TestPage from "./pages/TestPage";
 import NotFound from "./pages/Erorrs/NotFound";
 
 export default function App() {

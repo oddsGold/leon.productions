@@ -74,8 +74,6 @@
                 top: 0
 
 
-
-
 .home-grid__item--first
     height: 56vw
     @include respond-to('desktop')
@@ -83,3 +81,61 @@
 
 .home-grid__item__full
     height: 100vh
+
+@include respond-to('desktop-1600')
+    .home-grid__item__full
+        .video-container
+            padding-top: 0
+            .vimeo-player
+                position: relative
+                overflow: hidden
+                width: 100vw
+                height: 100vh
+
+                iframe
+                    position: absolute
+                    top: 50%
+                    left: 50%
+                    width: 100vw
+                    height: 100vh
+                    transform: translate(-50%, -50%)
+
+            @media (min-aspect-ratio: 16 / 9)
+                .vimeo-player iframe
+                    height: 56.25vw
+
+            @media (max-aspect-ratio: 16 / 9)
+                .vimeo-player iframe
+                    width: 177.78vh
+
+@include respond-to('tablet')
+    .home-grid__item__full
+        height: 100vh
+        position: relative
+
+        .video-container
+            width: 100%
+            height: 100%
+            position: relative
+            overflow: hidden
+
+            .vimeo-player
+                position: absolute
+                top: 50%
+                left: 50%
+                width: 100vh
+                height: 100vw
+                transform: translate(-50%, -50%) rotate(90deg)
+                transform-origin: center
+
+
+            iframe
+                width: 100%
+                height: 100%
+                position: absolute
+                top: 0
+                left: 0
+                transform: scale(1.33)
+
+
+

@@ -1,4 +1,4 @@
-import {Outlet} from "react-router-dom";
+import {Outlet, useParams} from "react-router-dom";
 import {useRef, useEffect, useState} from "react";
 import Logo from "./Logo";
 import Footer from "./Footer/Footer";
@@ -11,6 +11,7 @@ const Layout = () => {
     const {data: aboutData, error: isAboutError, isLoading: isAboutLoading} = useAboutQuery();
     const {data: footerData, error: isFooterError, isLoading: isFooterLoading} = useFooterContactsQuery();
     const loaderRef = useRef(null);
+    const urlParams = useParams();
 
     useEffect(() => {
         let timer;
@@ -20,7 +21,9 @@ const Layout = () => {
         timer = setTimeout(() => {
             if (loaderRef.current) {
                 loaderRef.current.classList.add('none');
-                document.body.classList.remove('no-scroll');
+                if(!urlParams.slug) {
+                    document.body.classList.remove('no-scroll');
+                }
             }
         }, 3000);
 
