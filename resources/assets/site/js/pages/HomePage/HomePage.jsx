@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import TopCases from '../../components/HomeComponents/TopCases';
 import RemainingCases from '../../components/HomeComponents/RemainingCases';
@@ -17,22 +17,33 @@ export default function HomePage() {
     const [showModal, setShowModal] = useState(false);
     const [showOverlay, setShowOverlay] = useState(false);
     const [selectedData, setSelectedData] = useState(null);
-    const [fadeIn, setFadeIn] = useState(false);
+    const setFadeInVisibleRef = useRef(null);
     const urlParams = useParams();
 
     const handleShowModal = useCallback(() => setShowModal(true), []);
     const handleCloseModal = useCallback(() => setShowModal(false), []);
     const handleShowOverlay = useCallback((data) => {
         setSelectedData(data);
-        setFadeIn(true);
+        setFadeInVisibleRef.current && setFadeInVisibleRef.current(true);
         setTimeout(() => {
             setShowOverlay(true);
-            setFadeIn(false);
+        }, 1100);
+        setTimeout(() => {
+            setFadeInVisibleRef.current && setFadeInVisibleRef.current(false);
         }, 1500);
     }, []);
+    const returnFadeInVisibleSetter = (setter) => {
+        setFadeInVisibleRef.current = setter;
+    };
     const handleHideOverlay = useCallback(() => {
-        setSelectedData(null);
-        setShowOverlay(false);
+        setFadeInVisibleRef.current && setFadeInVisibleRef.current(true);
+        setTimeout(() => {
+            setShowOverlay(false);
+            setSelectedData(null);
+        }, 1000);
+        setTimeout(() => {
+            setFadeInVisibleRef.current && setFadeInVisibleRef.current(false);
+        }, 1500);
     }, []);
 
     useEffect(() => {
@@ -75,7 +86,7 @@ export default function HomePage() {
                     handleShowOverlay={handleShowOverlay}
                 />
             )}
-            <FadeInOverlay isVisible={fadeIn} />
+            <FadeInOverlay selectedData={selectedData} returnFadeInVisibleSetter={returnFadeInVisibleSetter} />
             {showOverlay && (
                 <div className="overlay">
                     <OverlayComponent
