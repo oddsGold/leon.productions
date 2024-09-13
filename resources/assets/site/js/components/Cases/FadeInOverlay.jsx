@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-const FadeInOverlay = ({ isVisible, onAnimationEnd }) => {
+const FadeInOverlay = ({ onAnimationEnd, returnFadeInVisibleSetter }) => {
     const [fadeIn, setFadeIn] = useState(false);
 
     useEffect(() => {
-        if (isVisible) {
-            setFadeIn(true);
-        } else {
-            setFadeIn(false);
-        }
-    }, [isVisible]);
+        returnFadeInVisibleSetter && returnFadeInVisibleSetter(setFadeIn);
+    });
 
     return (
         <div
