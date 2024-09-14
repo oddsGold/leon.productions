@@ -84,21 +84,25 @@
         width: 242px
         max-width: 100%
         justify-content: flex-end
+        button
+            margin: 0
         .info-text
             position: absolute
-            bottom: 100%
-            left: 0
+            bottom: calc(100% + 10px)
+            right: 0
             transform: translateX(0) translateY(20px)
-            width: 215px
+            width: auto
             opacity: 0
             transition: opacity .5s ease, transform .5s ease
             z-index: 10
             font-size: 30px
             line-height: 36px
-            text-align: right
             color: #fff
             padding-bottom: 20px
             @include font-style($font-medium, 500, normal, auto)
+            min-width: 242px
+            margin-left: -100%
+            text-align: right
     .info.active ~ .info-text
             opacity: 1
             transform: translateX(0) translateY(0)

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { IoMdPlay } from "react-icons/io";
 import { IoPauseSharp } from "react-icons/io5";
 import { IoMdVolumeOff } from "react-icons/io";
@@ -19,6 +19,20 @@ export default function VideoControls({
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [info, setInfo] = useState(false);
     const [videoDuration, setVideoDuration] = useState(0);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+
+    const handleResize = () => {
+        setWindowHeight(window.innerHeight);
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     useEffect(() => {
         const initializePlayer = async () => {
@@ -64,9 +78,7 @@ export default function VideoControls({
 
         if (overlayElement) {
             if (!document.fullscreenElement) {
-                overlayElement.requestFullscreen().catch(err => {
-                    console.error("Error trying to enable full-screen mode:", err);
-                });
+                overlayElement.requestFullscreen().catch(err => {});
             } else {
                 document.exitFullscreen();
             }
@@ -74,7 +86,13 @@ export default function VideoControls({
     };
 
     return (
-        <div className="controls-row">
+        <div
+            className="controls-row"
+            style={{
+                minWidth: windowWidth <= 1023 ? `${windowHeight}px` : 'auto',
+                maxWidth: windowWidth <= 1023 ? `${windowHeight}px` : 'auto'
+            }}
+        >
             <div className="controls">
                 <button className={`play ${isPlaying ? 'active' : ''}`} onClick={handlePlayClick}>
                     <IoMdPlay/>
