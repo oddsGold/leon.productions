@@ -82,7 +82,7 @@ export const useVimeoPlayersFull = (cases) => {
                                 progressBarPointRefs.current[video.id].value = currentTime;
                             }
                             if (progressBarFilledRefs.current[video.id]) {
-                                const duration = durationRefs.current[video.id]; // Используйте значение из durationRefs
+                                const duration = durationRefs.current[video.id];
                                 progressBarFilledRefs.current[video.id].style.width = `${(currentTime * 100) / duration}%`;
                             }
                         });
