@@ -21,6 +21,7 @@ export default function VideoControls({
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
     const handleResize = () => {
+        setWindowWidth(window.innerWidth);
         setWindowHeight(window.innerHeight);
     };
 
@@ -99,8 +100,8 @@ export default function VideoControls({
             <div
                 className="controls-row"
                 style={{
-                    minWidth: windowWidth <= 1023 ? `${windowHeight}px` : 'auto',
-                    maxWidth: windowWidth <= 1023 ? `${windowHeight}px` : 'auto'
+                    minWidth: windowWidth <= 1023 ? `${windowHeight}px` : null,
+                    maxWidth: windowWidth <= 1023 ? `${windowHeight}px` : null
                 }}
             >
                 <div className="controls">
