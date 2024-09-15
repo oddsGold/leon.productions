@@ -13,7 +13,7 @@ export default function Navigation({handleShowModal}) {
         <nav className="site-menu">
             <div>
                 <span className="site-menu-link" onClick={handleToggleAbout}>About</span>
-                <NavLink to="/testv" className="site-menu-link">Showreel</NavLink>
+                <NavLink to="https://vimeo.com/1006643418" className="site-menu-link">Showreel</NavLink>
                 <button className="site-menu-link site-menu-link__bg" onClick={handleShowModal}>Contact</button>
             </div>
         </nav>
