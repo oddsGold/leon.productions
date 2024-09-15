@@ -9,8 +9,6 @@ import { MdClose } from "react-icons/md";
 export default function VideoControls({
                                           videoPlayer,
                                           handleHideOverlay,
-                                          handleRangeChange,
-                                          currentTime,
                                           selectedData,
                                           description
                                       }) {
@@ -57,13 +55,23 @@ export default function VideoControls({
 
     const handlePlayClick = () => {
         setIsPlaying(true);
-        videoPlayer?.current[selectedData.id].play();
+        videoPlayer?.current[selectedData.id].play().catch(e => {});
     };
 
     const handlePauseClick = () => {
         setIsPlaying(false);
-        videoPlayer?.current[selectedData.id].pause();
+        videoPlayer?.current[selectedData.id].pause().catch(e => {});
     };
+
+    const handlePlayPauseToggle = () => {
+        const newValue = !isPlaying;
+        setIsPlaying(newValue);
+        if(newValue){
+            videoPlayer?.current[selectedData.id].play().catch(e => {});
+        }else{
+            videoPlayer?.current[selectedData.id].pause().catch(e => {});
+        }
+    }
 
     const handleMuteClick = () => {
         setIsMuted(!isMuted);
@@ -86,55 +94,58 @@ export default function VideoControls({
     };
 
     return (
-        <div
-            className="controls-row"
-            style={{
-                minWidth: windowWidth <= 1023 ? `${windowHeight}px` : 'auto',
-                maxWidth: windowWidth <= 1023 ? `${windowHeight}px` : 'auto'
-            }}
-        >
-            <div className="controls">
-                <button className={`play ${isPlaying ? 'active' : ''}`} onClick={handlePlayClick}>
-                    <IoMdPlay/>
-                </button>
-                <button className={`pause ${!isPlaying ? 'active' : ''}`} onClick={handlePauseClick}>
-                    <IoPauseSharp/>
-                </button>
-                <button className="mute" onClick={handleMuteClick}>
-                    {isMuted ? <IoVolumeHigh/> : <IoMdVolumeOff style={{color: '#f3a407'}}/>}
-                </button>
-                <div className="info-container">
-                    <button className={`info ${info ? 'active' : ''}`} onClick={handleInfoClick}>
-                        <span>i</span>
+        <>
+            <div className="play-pause-button" onClick={handlePlayPauseToggle}></div>
+            <div
+                className="controls-row"
+                style={{
+                    minWidth: windowWidth <= 1023 ? `${windowHeight}px` : 'auto',
+                    maxWidth: windowWidth <= 1023 ? `${windowHeight}px` : 'auto'
+                }}
+            >
+                <div className="controls">
+                    <button className={`play ${isPlaying ? 'active' : ''}`} onClick={handlePlayClick}>
+                        <IoMdPlay/>
                     </button>
+                    <button className={`pause ${!isPlaying ? 'active' : ''}`} onClick={handlePauseClick}>
+                        <IoPauseSharp/>
+                    </button>
+                    <button className="mute" onClick={handleMuteClick}>
+                        {isMuted ? <IoVolumeHigh/> : <IoMdVolumeOff style={{color: '#f3a407'}}/>}
+                    </button>
+                    <div className="info-container">
+                        <button className={`info ${info ? 'active' : ''}`} onClick={handleInfoClick}>
+                            <span>i</span>
+                        </button>
 
-                    <div className="info-text">
-                        <p>{description}</p>
+                        <div className="info-text">
+                            <p>{description}</p>
+                        </div>
+
                     </div>
-
-                </div>
-                <div className="video-duration">
-                    <p>
-                        {videoDuration > 0
-                            ? `${Math.floor(videoDuration / 60).toString().padStart(2, '0')}:${Math.floor(videoDuration % 60).toString().padStart(2, '0')}`
-                            : ''}
-                    </p>
-                </div>
-                <button className="fullscreen" onClick={handleFullscreenClick}>
-                    <MdCloseFullscreen/>
-                </button>
-                <button className="close" onClick={handleHideOverlay}>
-                    <MdClose/>
-                </button>
-                <div className="progress-bar">
-                    <progress className={`point`} value={currentTime} min="0" max={videoDuration}></progress>
-                    <input className={`range`} value={currentTime} min="0"
-                           type="range" step="0.0001" max={videoDuration} onChange={handleRangeChange}/>
-                    <div className={`progress-bar-filled-${selectedData.id} filled-wrapper`}>
-                        <div className="filled"></div>
+                    <div className="video-duration">
+                        <p>
+                            {videoDuration > 0
+                                ? `${Math.floor(videoDuration / 60).toString().padStart(2, '0')}:${Math.floor(videoDuration % 60).toString().padStart(2, '0')}`
+                                : ''}
+                        </p>
+                    </div>
+                    <button className="fullscreen" onClick={handleFullscreenClick}>
+                        <MdCloseFullscreen/>
+                    </button>
+                    <button className="close" onClick={handleHideOverlay}>
+                        <MdClose/>
+                    </button>
+                    <div className="progress-bar">
+                        <progress className={`progress-bar-point-${selectedData.id} point`} value="0" min="0" max={videoDuration}></progress>
+                        <input className={`progress-bar-range-${selectedData.id} range`} min="0" type="range" step="0.0001" max={videoDuration}/>
+                        <div className="progress-bar-timeline"></div>
+                        <div className={`progress-bar-filled-${selectedData.id} filled-wrapper`}>
+                            <div className="filled"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

@@ -6,7 +6,7 @@ export const useVimeoPlayersFull = (cases) => {
     const progressBarPointRefs = useRef({});
     const progressBarRangeRefs = useRef({});
     const progressBarFilledRefs = useRef({});
-    const intervalRefs = useRef({});
+    const requestAnimationFrameRefs = useRef({});
     const durationRefs = useRef({});
 
     useEffect(() => {
@@ -45,39 +45,43 @@ export const useVimeoPlayersFull = (cases) => {
                         }
 
                         return vimeoPlayer.play();
-                    }).then(() => {
-                        vimeoPlayer.on('play', () => {
-                            intervalRefs.current[video.id] = setInterval(() => {
-                                vimeoPlayer.getCurrentTime().then((seconds) => {
-                                    const duration = durationRefs.current[video.id];
-                                    if (progressBarPointRefs.current[video.id]) {
-                                        progressBarPointRefs.current[video.id].value = seconds;
-                                    }
-                                    if (progressBarFilledRefs.current[video.id]) {
-                                        progressBarFilledRefs.current[video.id].style.width = `${(seconds / duration) * 100}%`;
-                                    }
-                                }).catch(error => console.error("Error getting current time:", error));
-                            }, 100);
-                        });
-
-                        vimeoPlayer.on('pause', () => {
-                            if (intervalRefs.current[video.id]) {
-                                clearInterval(intervalRefs.current[video.id]);
-                            }
-                        });
-
-                        vimeoPlayer.on('ended', () => {
-                            if (intervalRefs.current[video.id]) {
-                                clearInterval(intervalRefs.current[video.id]);
-                            }
-                        });
-
                     }).catch(error => console.error("Error initializing player:", error));
 
-                    if (progressBarRange) {
-                        progressBarRange.addEventListener('input', (e) => {
+
+                    const animateProgressBar = () => {
+                        const duration = durationRefs.current[video.id];
+                        const animationStepCallback = (currentFrameSec) => {
+                            vimeoPlayer.getCurrentTime().then((currentVideoSec) =>  {
+
+                                if (progressBarPointRefs.current[video.id]) {
+                                    progressBarPointRefs.current[video.id].value = currentVideoSec;
+                                }
+                                if (progressBarFilledRefs.current[video.id]) {
+                                    progressBarFilledRefs.current[video.id].style.width = `${(currentVideoSec / duration) * 100}%`;
+                                }
+
+                            }).catch((e) => {});
+                            requestAnimationFrameRefs.current[video.id] = window.requestAnimationFrame(animationStepCallback)
+                        };
+                        requestAnimationFrameRefs.current[video.id] = window.requestAnimationFrame(animationStepCallback)
+                    };
+
+                    vimeoPlayer.on('play', () => {
+                        animateProgressBar();
+                    });
+
+                    vimeoPlayer.on('pause', () => {
+                        if (requestAnimationFrameRefs.current[video.id]) {
+                            window.cancelAnimationFrame(requestAnimationFrameRefs.current[video.id]);
+                        }
+                    });
+
+                    if (progressBarRangeRefs.current[video.id]) {
+                        progressBarRangeRefs.current[video.id].addEventListener('input', (e) => {
+                            if (requestAnimationFrameRefs.current[video.id]) {
+                                window.cancelAnimationFrame(requestAnimationFrameRefs.current[video.id]);
+                            }
                             const currentTime = e.currentTarget.value;
-                            vimeoPlayer.setCurrentTime(currentTime).catch(error => console.error("Error setting current time:", error));
                             if (progressBarPointRefs.current[video.id]) {
                                 progressBarPointRefs.current[video.id].value = currentTime;
                             }
@@ -85,6 +89,22 @@ export const useVimeoPlayersFull = (cases) => {
                                 const duration = durationRefs.current[video.id];
                                 progressBarFilledRefs.current[video.id].style.width = `${(currentTime * 100) / duration}%`;
                             }
+                        });
+                        progressBarRangeRefs.current[video.id].addEventListener('change', (e) => {
+
+                            if (requestAnimationFrameRefs.current[video.id]) {
+                                window.cancelAnimationFrame(requestAnimationFrameRefs.current[video.id]);
+                            }
+
+                            const currentTime = e.currentTarget.value;
+                            vimeoPlayer.setCurrentTime(currentTime).then(() => {
+                                vimeoPlayer.getPaused().then(function(paused) {
+                                    if(!paused){
+                                        animateProgressBar();
+                                    }
+                                }).catch(function(error) {});
+                            }).catch(error => console.error("Error setting current time:", error));
+
                         });
                     }
                 }
@@ -100,8 +120,8 @@ export const useVimeoPlayersFull = (cases) => {
                         delete progressBarPointRefs.current[video.id];
                         delete progressBarRangeRefs.current[video.id];
                         delete progressBarFilledRefs.current[video.id];
-                        if (intervalRefs.current[video.id]) {
-                            clearInterval(intervalRefs.current[video.id]);
+                        if (requestAnimationFrameRefs.current[video.id]) {
+                            window.cancelAnimationFrame(requestAnimationFrameRefs.current[video.id]);
                         }
                     }).catch(error => console.error("Error destroying player:", error));
                 }
