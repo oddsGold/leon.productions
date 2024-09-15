@@ -104,6 +104,7 @@ export default function VideoControls({
                     maxWidth: windowWidth <= 1023 ? `${windowHeight}px` : null
                 }}
             >
+                <div className="play-pause-button" onClick={handlePlayPauseToggle}></div>
                 <div className="controls">
                     <button className={`play ${isPlaying ? 'active' : ''}`} onClick={handlePlayClick}>
                         <IoMdPlay/>
