@@ -26,4 +26,4 @@ Route::middleware(['auth.ips'])->group(function(){
 
 
 Route::get('/', [App\Http\Controllers\Site\HomeController::class, 'index'])->name('home');
-Route::get('{all}', [App\Http\Controllers\Site\HomeController::class, 'index'])->where('all', '.*');
+Route::get('/cases/{all}', [App\Http\Controllers\Site\HomeController::class, 'index'])->where('all', '.*');

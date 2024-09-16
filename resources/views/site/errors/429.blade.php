@@ -1,18 +1,22 @@
 @extends('site/base')
 
-@section('title', '429 Занадто багато запитів')
+@section('title', '429 Too Many Requests')
 
 @section('content')
 
     <main class="error-page">
         <section class="error">
             <div class="container">
-                <h1 class="h1 text-center">429</h1>
-                <h3 class="text-center h3">Занадто багато запитів.</h3>
-                <h3 class="text-center h3">Зачекайте хвилинку та спробуйте ще.</h3>
+                <div class="error-content">
+                    <p>O<span>o</span>ps</p>
+                    <h1>429 - Too Many Requests</h1>
+                    <p class="error-info">Please try again later.</p>
+                    <a href="/">go to homepage</a>
+                </div>
             </div>
         </section>
     </main>
+
 
 @endsection
 

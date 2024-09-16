@@ -50,6 +50,21 @@ if (!function_exists('str_limit_text')) {
     }
 }
 
+if (!function_exists('read_file_by_iterable_lines')){
+    function read_file_by_iterable_lines($fileAndPath)
+    {
+        if(!filesize($fileAndPath)){
+            return [];
+        }
+        $handle = fopen($fileAndPath, "r");
+        while(!feof($handle)) {
+            yield fgets($handle);
+        }
+        fclose($handle);
+
+    }
+}
+
 if (!function_exists('parse_host')){
     function parse_host($url)
     {

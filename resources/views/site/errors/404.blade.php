@@ -1,6 +1,6 @@
 @extends('site/base')
 
-@section('title', '404 Сторінку не знайдено')
+@section('title', '404 Page not found')
 
 @section('content')
 

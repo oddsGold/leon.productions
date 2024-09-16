@@ -1,15 +1,18 @@
 @extends('site/base')
 
-@section('title', '500 Занадто багато запитів')
+@section('title', '500 Internal Server Error')
 
 @section('content')
 
     <main class="error-page">
         <section class="error">
             <div class="container">
-                <h1 class="h1 text-center">500</h1>
-                <h3 class="text-center h3">Упс. На сайті виникла помилка.</h3>
-                <h3 class="text-center h3">Спробуйте повторити запит, трохи пізніше.</h3>
+                <div class="error-content">
+                    <p>O<span>o</span>ps</p>
+                    <h1>500 - Internal Server Error</h1>
+                    <p class="error-info">Please try again later.</p>
+                    <a href="/">go to homepage</a>
+                </div>
             </div>
         </section>
     </main>
