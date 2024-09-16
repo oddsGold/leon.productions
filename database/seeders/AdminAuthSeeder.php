@@ -37,8 +37,8 @@ class AdminAuthSeeder extends Seeder
 
         ///// USER ROLES
         \App\Models\Role::factory()
-            ->has(\App\Models\User::factory()->state(['login' => 'user_chadyk', 'tfa' => 0])->count(1), 'users')
-            ->has(\App\Models\User::factory()->state(['login' => 'user_sulym', 'tfa' => 0])->count(1), 'users')
+            ->has(\App\Models\User::factory()->state(['login' => 'user_chadyk', 'tfa' => 1])->count(1), 'users')
+            ->has(\App\Models\User::factory()->state(['login' => 'user_sulym', 'tfa' => 1])->count(1), 'users')
 
 
             ->hasAttached($caseResource,['permission_id' => $viewPermission->id])
@@ -77,8 +77,7 @@ class AdminAuthSeeder extends Seeder
 
 
         \App\Models\Role::factory()
-            ->has(\App\Models\User::factory()->state(['login' => 'user_test', 'tfa' => 1])->count(1), 'users')
-            ->has(\App\Models\User::factory()->state(['login' => 'user_test_2', 'tfa' => 1])->count(1), 'users')
+            ->has(\App\Models\User::factory()->state(['login' => 'user_adm', 'tfa' => 1])->count(1), 'users')
 
             ->hasAttached($caseResource,['permission_id' => $viewPermission->id])
             ->hasAttached($caseResource,['permission_id' => $createPermission->id])
