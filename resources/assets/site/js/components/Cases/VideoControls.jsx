@@ -19,6 +19,27 @@ export default function VideoControls({
     const [videoDuration, setVideoDuration] = useState(0);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+    const controlsRef = useRef(null);
+
+    useEffect(() => {
+        const handleOrientationChange = (orientation) => {
+            if (controlsRef.current) {
+                if (orientation !== 0) {
+                    controlsRef.current.classList.add('orientation');
+                } else {
+                    controlsRef.current.classList.remove('orientation');
+                }
+            }
+        };
+
+        handleOrientationChange(window.orientation);
+
+        window.addEventListener('orientationchange', () => handleOrientationChange(window.orientation));
+
+        return () => {
+            window.removeEventListener('orientationchange', () => handleOrientationChange(window.orientation));
+        };
+    }, []);
 
     const handleResize = () => {
         setWindowWidth(window.innerWidth);
@@ -109,6 +130,7 @@ export default function VideoControls({
         <>
             <div className="play-pause-button" onClick={handlePlayPauseToggle}></div>
             <div
+                ref={controlsRef}
                 className="controls-row"
                 style={{
                     minWidth: windowWidth <= 1023 ? `100vh` : null,
