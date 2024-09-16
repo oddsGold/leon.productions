@@ -25,6 +25,7 @@ export const useVimeoPlayersFull = (cases) => {
                         controls: false,
                         loop: true,
                         muted: true,
+                        playsinline: false
                     });
 
                     progressBarPointRefs.current[video.id] = progressBarPoint;

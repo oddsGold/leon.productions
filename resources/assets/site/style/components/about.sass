@@ -189,3 +189,16 @@ body
         .about-content-social
             a
                 padding: 0 25px
+
+@include respond-to('small-mobile')
+    .about
+        .about-content-social
+            display: grid
+            grid-template-columns: 1fr 1fr 1fr
+            align-items: center
+            justify-content: center
+            gap: 15px
+            a:first-child
+                padding-left: 25px
+            a:last-child
+                padding-right: 25px

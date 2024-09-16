@@ -1,10 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
-import { IoMdPlay } from "react-icons/io";
-import { IoPauseSharp } from "react-icons/io5";
-import { IoMdVolumeOff } from "react-icons/io";
-import { IoVolumeHigh } from "react-icons/io5";
-import { MdCloseFullscreen } from "react-icons/md";
-import { MdClose } from "react-icons/md";
+import {IoMdPlay} from "react-icons/io";
+import {IoPauseSharp} from "react-icons/io5";
+import {IoMdVolumeOff} from "react-icons/io";
+import {IoVolumeHigh} from "react-icons/io5";
+import {MdCloseFullscreen} from "react-icons/md";
+import {MdClose} from "react-icons/md";
 
 export default function VideoControls({
                                           videoPlayer,
@@ -67,9 +67,9 @@ export default function VideoControls({
     const handlePlayPauseToggle = () => {
         const newValue = !isPlaying;
         setIsPlaying(newValue);
-        if(newValue){
+        if (newValue) {
             videoPlayer?.current[selectedData.id].play().catch(e => {});
-        }else{
+        } else {
             videoPlayer?.current[selectedData.id].pause().catch(e => {});
         }
     }
@@ -83,13 +83,24 @@ export default function VideoControls({
 
     const handleFullscreenClick = () => {
         setIsFullscreen(!isFullscreen);
-        const overlayElement = document.querySelector('.overlay-content');
+
+        const overlayElement = window.innerWidth <= 1023
+            ? document.querySelector('.overlay-content .vimeo-player iframe')
+            : document.querySelector('.overlay-content');
 
         if (overlayElement) {
-            if (!document.fullscreenElement) {
-                overlayElement.requestFullscreen().catch(err => {});
-            } else {
+            if (document.fullscreenElement) {
                 document.exitFullscreen();
+            } else {
+                if (overlayElement.requestFullscreen) {
+                    overlayElement.requestFullscreen();
+                } else if (overlayElement.mozRequestFullScreen) {
+                    overlayElement.mozRequestFullScreen();
+                } else if (overlayElement.webkitRequestFullscreen) {
+                    overlayElement.webkitRequestFullscreen();
+                } else if (overlayElement.msRequestFullscreen) {
+                    overlayElement.msRequestFullscreen();
+                }
             }
         }
     };
@@ -139,8 +150,10 @@ export default function VideoControls({
                         <MdClose/>
                     </button>
                     <div className="progress-bar">
-                        <progress className={`progress-bar-point-${selectedData.id} point`} value="0" min="0" max={videoDuration}></progress>
-                        <input className={`progress-bar-range-${selectedData.id} range`} min="0" type="range" step="0.0001" max={videoDuration}/>
+                        <progress className={`progress-bar-point-${selectedData.id} point`} value="0" min="0"
+                                  max={videoDuration}></progress>
+                        <input className={`progress-bar-range-${selectedData.id} range`} min="0" type="range"
+                               step="0.0001" max={videoDuration}/>
                         <div className="progress-bar-timeline"></div>
                         <div className={`progress-bar-filled-${selectedData.id} filled-wrapper`}>
                             <div className="filled"></div>
