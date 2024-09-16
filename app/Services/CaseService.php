@@ -22,7 +22,6 @@ class CaseService extends CRUDService implements CRUD
         return $this->getModel()
             ->newQuery()
             ->published()
-            ->latest()
             ->get();
     }
 
