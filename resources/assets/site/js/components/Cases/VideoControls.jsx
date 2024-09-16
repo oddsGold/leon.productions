@@ -111,8 +111,8 @@ export default function VideoControls({
             <div
                 className="controls-row"
                 style={{
-                    minWidth: windowWidth <= 1023 ? `${windowHeight}px` : null,
-                    maxWidth: windowWidth <= 1023 ? `${windowHeight}px` : null
+                    minWidth: windowWidth <= 1023 ? `100vh` : null,
+                    maxWidth: windowWidth <= 1023 ? `100vh` : null
                 }}
             >
                 <div className="play-pause-button" onClick={handlePlayPauseToggle}></div>
