@@ -8,12 +8,13 @@ import {MdClose} from "react-icons/md";
 
 export default function VideoControls({
                                           videoPlayer,
+                                          videoPlayerMobileFs,
                                           handleHideOverlay,
                                           selectedData,
                                           description
                                       }) {
     const [isPlaying, setIsPlaying] = useState(true);
-    const [isMuted, setIsMuted] = useState(false);
+    const [isMuted, setIsMuted] = useState(true);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [info, setInfo] = useState(false);
     const [videoDuration, setVideoDuration] = useState(0);
@@ -23,6 +24,10 @@ export default function VideoControls({
     const handleResize = () => {
         setWindowWidth(window.innerWidth);
         setWindowHeight(window.innerHeight);
+    };
+
+    const isMobile = () => {
+        return window.innerWidth <= 1023;
     };
 
     useEffect(() => {
@@ -48,6 +53,41 @@ export default function VideoControls({
 
         return () => clearTimeout(timer);
     }, [videoPlayer, selectedData.id]);
+
+    useEffect(() => {
+        const initializeListener = () => {
+            if(isMobile()){
+                const player = videoPlayer?.current?.[selectedData.id];
+                const playerMobileFs = videoPlayerMobileFs?.current?.[selectedData.id];
+                if(playerMobileFs && player){
+                    playerMobileFs.off('fullscreenchange');
+                    playerMobileFs.on('fullscreenchange', (e) => {
+                        if(!e.fullscreen){
+                            try {
+                                player.getPaused().then(function(paused) {
+                                    setIsPlaying(paused);
+                                });
+                                playerMobileFs.getCurrentTime().then((currentTime) => {
+                                    player.setCurrentTime(currentTime).then(() => {
+                                        if(isPlaying){
+                                            player.play();
+                                        }else{
+                                            player.pause();
+                                        }
+                                    });
+                                });
+                            }catch (e) {}
+                        }
+                    })
+                }
+            }
+        };
+        const timer = setTimeout(initializeListener, 500);
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [videoPlayer, videoPlayerMobileFs, selectedData.id]);
 
 
     const handleInfoClick = () => {
@@ -84,22 +124,41 @@ export default function VideoControls({
     const handleFullscreenClick = () => {
         setIsFullscreen(!isFullscreen);
 
-        const overlayElement = window.innerWidth <= 1023
-            ? document.querySelector('.overlay-content .vimeo-player iframe')
-            : document.querySelector('.overlay-content');
+        if(isMobile()){
+            const player = videoPlayer?.current?.[selectedData.id];
+            const playerMobileFs = videoPlayerMobileFs?.current?.[selectedData.id];
+            try {
+                if(player && playerMobileFs){
+                    Promise.all([
+                        player.getCurrentTime(),
+                        player.getMuted()
+                    ]).then(function(dimensions) {
+                        playerMobileFs.setCurrentTime(dimensions[0]);
+                        playerMobileFs.setMuted(dimensions[1]);
+                        playerMobileFs.play();
+                        player.setMuted(true);
+                        setIsMuted(true);
+                    });
+                }
 
-        if (overlayElement) {
-            if (document.fullscreenElement) {
-                document.exitFullscreen();
-            } else {
-                if (overlayElement.requestFullscreen) {
-                    overlayElement.requestFullscreen();
-                } else if (overlayElement.mozRequestFullScreen) {
-                    overlayElement.mozRequestFullScreen();
-                } else if (overlayElement.webkitRequestFullscreen) {
-                    overlayElement.webkitRequestFullscreen();
-                } else if (overlayElement.msRequestFullscreen) {
-                    overlayElement.msRequestFullscreen();
+            }catch (e) {
+                console.log(e);
+            }
+        }else{
+            const overlayElement = document.querySelector('.overlay-content');
+            if (overlayElement) {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else {
+                    if (overlayElement.requestFullscreen) {
+                        overlayElement.requestFullscreen();
+                    } else if (overlayElement.mozRequestFullScreen) {
+                        overlayElement.mozRequestFullScreen();
+                    } else if (overlayElement.webkitRequestFullscreen) {
+                        overlayElement.webkitRequestFullscreen();
+                    } else if (overlayElement.msRequestFullscreen) {
+                        overlayElement.msRequestFullscreen();
+                    }
                 }
             }
         }
@@ -124,7 +183,7 @@ export default function VideoControls({
                         <IoPauseSharp/>
                     </button>
                     <button className="mute" onClick={handleMuteClick}>
-                        {isMuted ? <IoVolumeHigh/> : <IoMdVolumeOff style={{color: '#f3a407'}}/>}
+                        {!isMuted ? <IoVolumeHigh/> : <IoMdVolumeOff style={{color: '#f3a407'}}/>}
                     </button>
                     <div className="info-container">
                         <button className={`info ${info ? 'active' : ''}`} onClick={handleInfoClick}>
