@@ -1,6 +1,6 @@
 .home-grid__item-description
     position: absolute
-    bottom: 30px
+    bottom: 35px
     right: 30px
     display: flex
     flex-direction: column
@@ -13,25 +13,23 @@
     text-align: right
     overflow: hidden
     justify-content: flex-end
-    z-index: 200
+    z-index: 2000
     .description-text
         position: absolute
         bottom: -100%
         right: 0
         transform: translateX(0)
         opacity: 0
-        transition: bottom 0.5s ease, opacity 0.5s ease
+        transition: bottom 0.3s ease, opacity 0.3s ease
         p
-            @include font-style($font-medium, 500, normal, auto)
             font-size: 1.875rem
             line-height: 2.25rem
     img
         position: absolute
         bottom: 0
-        right: 0
+        right: -12px
         transform: translateX(-50%)
-        transition: transform 0.5s ease
-        max-width: 20px
+        transition: transform 0.3s ease
 
 @include respond-to('tablet')
     .home-grid__item-description
