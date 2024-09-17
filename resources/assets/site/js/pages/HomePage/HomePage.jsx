@@ -74,7 +74,10 @@ export default function HomePage() {
 
     return (
         <>
-            <Navigation handleShowModal={handleShowModal} />
+            <Navigation
+                handleShowModal={handleShowModal}
+                handleShowOverlay={handleShowOverlay}
+            />
             <TopCases
                 cases={topCasesData}
                 handleShowModal={handleShowModal}

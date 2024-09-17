@@ -1,8 +1,8 @@
-import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {toggleAbout} from "../../redux/about/slice";
+import ShowReel from "./ShowReel";
 
-export default function Navigation({handleShowModal}) {
+export default function Navigation({handleShowModal, handleShowOverlay}) {
     const dispatch = useDispatch();
 
     const handleToggleAbout = () => {
@@ -13,7 +13,7 @@ export default function Navigation({handleShowModal}) {
         <nav className="site-menu">
             <div>
                 <span className="site-menu-link" onClick={handleToggleAbout}>About</span>
-                <NavLink to="https://vimeo.com/1006643418" className="site-menu-link">Showreel</NavLink>
+                <ShowReel handleShowOverlay={handleShowOverlay} />
                 <button className="site-menu-link site-menu-link__bg" onClick={handleShowModal}>Contact</button>
             </div>
         </nav>
