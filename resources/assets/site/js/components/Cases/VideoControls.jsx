@@ -23,22 +23,26 @@ export default function VideoControls({
     const controlsRef = useRef(null);
 
     useEffect(() => {
-        const handleOrientationChange = (orientation) => {
+        const handleOrientationChange = () => {
+            const orientation = window.screen.orientation.angle;
             if (controlsRef.current) {
-                if (orientation !== 0) {
+                if (orientation === 90) {
+                    controlsRef.current.classList.add('orientation-270');
+                } else if (orientation === -90 || orientation === 270) {
                     controlsRef.current.classList.add('orientation');
                 } else {
                     controlsRef.current.classList.remove('orientation');
+                    controlsRef.current.classList.remove('orientation-270');
                 }
             }
         };
 
-        handleOrientationChange(window.orientation);
+        handleOrientationChange();
 
-        window.addEventListener('orientationchange', () => handleOrientationChange(window.orientation));
+        window.screen.orientation.addEventListener('change', handleOrientationChange);
 
         return () => {
-            window.removeEventListener('orientationchange', () => handleOrientationChange(window.orientation));
+            window.screen.orientation.removeEventListener('change', handleOrientationChange);
         };
     }, []);
 
