@@ -36,12 +36,12 @@ export default function LoginFormTfa({QrCode, loginTFA, forgotTFA}){
                     </div>
                 </div>
                 <div className="row justify-content-between">
-                    <div className="col-xl-12 col-xxl-5 mb-3">
+                    <div className="col-xl-12 col-xxl-12 mb-3">
                         <button onClick={sendTfaCodeHandler} type="submit" className="btn w-100 btn-primary">Отправить</button>
                     </div>
-                    <div className="col-xl-12 col-xxl-7">
-                        <button onClick={sendToEmailBtnHandler} type="submit" className="btn w-100 btn-primary email-send">Отправить на email</button>
-                    </div>
+                    {/*<div className="col-xl-12 col-xxl-7">*/}
+                    {/*    <button onClick={sendToEmailBtnHandler} type="submit" className="btn w-100 btn-primary email-send">Отправить на email</button>*/}
+                    {/*</div>*/}
                 </div>
             </div>
         </div>
