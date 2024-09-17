@@ -8,10 +8,10 @@ export default function Footer({footerData}) {
                 <p>{footerData.contact.phone}</p>
             </div>
             <div className="contact-social">
-                <a href={footerData.contact.whatsapp}>
+                <a href={footerData.contact.whatsapp} target="_blank">
                     <img src="/images/viber-icon.png" alt="Whatsapp icon"/>
                 </a>
-                <a href={footerData.contact.telegram}>
+                <a href={footerData.contact.telegram}  target="_blank">
                     <img src="/images/telegram-icon.png" alt="telegram"/>
                 </a>
             </div>
