@@ -1,8 +1,9 @@
+import React, {useEffect} from 'react';
 import Description from "../Description";
-import {useVimeoPlayers} from "../../hooks/useVimeoPlayers";
+import {useVimeoPlayersWithDelay} from "../../hooks/useVimeoPlayersWithDelay";
 
 export default function RemainingCases({cases, handleShowOverlay}) {
-    useVimeoPlayers(cases);
+    useVimeoPlayersWithDelay(cases);
 
     return (
         <div className="row no-gutters">

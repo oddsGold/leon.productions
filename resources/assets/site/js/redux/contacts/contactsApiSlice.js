@@ -15,7 +15,28 @@ export const contactsApiSlice = api.injectEndpoints({
     })
 });
 
+let contactLocalData = null;
+if(window.appData && window.appData.contact){
+    contactLocalData = {
+        data: window.appData.contact,
+        error: false,
+        isLoading: false
+    }
+}
+
+let footerLocalData = null;
+if(window.appData && window.appData.footer){
+    footerLocalData = {
+        data: window.appData.footer,
+        error: false,
+        isLoading: false
+    }
+}
+
 export const {
     useContactsQuery,
     useFooterContactsQuery
-} = contactsApiSlice;
+} = ((contactLocalData && footerLocalData) ? {
+    useContactsQuery: () => contactLocalData,
+    useFooterContactsQuery: () => footerLocalData
+} : contactsApiSlice);

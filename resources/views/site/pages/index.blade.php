@@ -16,5 +16,12 @@
 
 
 @section('script-body')
-
+    <script nonce="{{ \Illuminate\Support\Facades\Vite::cspNonce() }}">
+        window.appData = {
+            about: {!! \Illuminate\Support\Js::from($about) !!},
+            cases: {!! \Illuminate\Support\Js::from($cases) !!},
+            contact: {!! \Illuminate\Support\Js::from($contact) !!},
+            footer: {!! \Illuminate\Support\Js::from($footer) !!},
+        };
+    </script>
 @endsection

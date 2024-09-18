@@ -1,10 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Talk from "./Talk";
 import Description from "../Description";
 import {useVimeoPlayers} from "../../hooks/useVimeoPlayers";
 
 export default function TopCases({cases, handleShowModal, handleShowOverlay}) {
-    useVimeoPlayers(cases);
+    const players = useVimeoPlayers(cases);
+
+    useEffect(() => {
+        const keys = Object.keys(players.current);
+        if(keys.length){
+            try{
+                for(let i = 0; i < keys.length; i++){
+                    players.current[keys[i]].play().then(() => {
+                        if(i !== 0){
+                            players.current[keys[i]].pause();
+                        }
+                    });
+                }
+            }catch (e) {}
+        }
+    },[]);
 
     return (
         <>

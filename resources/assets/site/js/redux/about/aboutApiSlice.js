@@ -10,6 +10,15 @@ export const aboutApiSlice = api.injectEndpoints({
     })
 });
 
+let aboutLocalData = null;
+if(window.appData && window.appData.about){
+    aboutLocalData = {
+        data: window.appData.about,
+        error: false,
+        isLoading: false
+    };
+}
+
 export const {
     useAboutQuery
-} = aboutApiSlice;
+} = (aboutLocalData ? {useAboutQuery: () => aboutLocalData} : aboutApiSlice);

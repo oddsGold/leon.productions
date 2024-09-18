@@ -11,6 +11,15 @@ export const casesApiSlice = api.injectEndpoints({
     })
 });
 
+let videoLocalData = null;
+if(window.appData && window.appData.cases){
+    videoLocalData = {
+        data: window.appData.cases,
+        error: false,
+        isLoading: false
+    };
+}
+
 export const {
     useVideoQuery,
-} = casesApiSlice;
+} = (videoLocalData ? {useVideoQuery: () => videoLocalData} : casesApiSlice);

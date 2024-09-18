@@ -13,6 +13,7 @@ export const useVimeoPlayers = (cases) => {
                         controls: false,
                         loop: true,
                         muted: true,
+                        autopause: false
                     });
 
                     const videoElement = document.querySelector(`#vimeo-${video.id}`).closest('.home-grid__item');
@@ -27,13 +28,15 @@ export const useVimeoPlayers = (cases) => {
                         }
                     });
 
-                    videoElement.addEventListener('mouseout', () => {
-                        if (isPlaying) {
-                            videoElement.classList.remove('play');
-                            videoRefs.current[video.id].pause().then(() => {
-                                isPlaying = false;
-                            }).catch(() => {});
-                        }
+                    videoElement.addEventListener('mouseout', (paused) => {
+                        videoRefs.current[video.id].getPaused().then((paused) => {
+                            if(!paused){
+                                videoElement.classList.remove('play');
+                                videoRefs.current[video.id].pause().then(() => {
+                                    isPlaying = false;
+                                }).catch(() => {});
+                            }
+                        }).catch(function(error) {})
                     });
                 }
             });
