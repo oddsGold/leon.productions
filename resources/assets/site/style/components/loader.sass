@@ -23,7 +23,26 @@
             position: absolute
             top: 0
             left: 195px
-            animation: l1 2s linear infinite
+            animation: l1 3s linear infinite
+
+@include respond-to('desktop-1280')
+    .loader-bg
+        .loader-bg-content
+            img:first-child
+                max-width: 250px
+            img.animation-o
+                left: 100px
+                width: 90px
+@include respond-to('tablet')
+    .loader-bg
+        .loader-bg-content
+            background: url("../images/loader-bg-mob.svg") no-repeat 50% 50%
+            background-size: cover
+            img:first-child
+                max-width: 220px
+            img.animation-o
+                left: 88px
+                width: 78px
 
 @keyframes l1
     to
