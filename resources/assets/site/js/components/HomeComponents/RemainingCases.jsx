@@ -9,7 +9,7 @@ export default function RemainingCases({cases, handleShowOverlay}) {
             {cases.map((video, index) => (
                 <div key={video.id} className={`${index % 3 === 0 ? 'col-xl-12' : 'col-xl-6'}`}>
                     <div
-                        className="home-grid__item home-grid__item__overlay"
+                        className={`home-grid__item home-grid__item__overlay ${index % 3 === 0 ? 'home-grid__item_full-width' : ''}`}
                         onClick={() => handleShowOverlay(video)}
                     >
                         <div className="video-container">

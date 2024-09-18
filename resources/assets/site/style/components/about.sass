@@ -26,10 +26,10 @@ body
         background-size: contain
 
     .about-content
-        padding: 17px 30px 53px 30px
+        padding: 37px 30px 53px 30px
         .about-content-btn
             position: absolute
-            top: 17px
+            top: 9px
             right: 30px
             cursor: pointer
             padding-top: 20px
@@ -40,18 +40,21 @@ body
                 color: #fff
                 @include font-style($font-bold, 700, normal, auto)
                 font-size: 3.75rem
-                line-height: 5.625rem
+                line-height: 1
                 text-transform: uppercase
                 margin: 0
                 padding: 0
         .about-content-row
             position: relative
             z-index: 100
-            padding: 10px 0 90px 0
+            padding: 30px 0 90px 0
             display: grid
             grid-template-columns: 35% 65%
             .about-content-row-item__padding
                 padding-left: 100px
+                width: 100%
+                box-sizing: border-box
+                max-width: 1179px
             .about-content-row-title
                 p
                     color: rgba(245, 165, 7, 1)
@@ -63,6 +66,7 @@ body
                 color: #fff
                 padding-right: 42px
                 p
+                    @include font-style($font-light, 300, normal, auto)
                     font-size: 1.25rem
                     line-height: 1.875rem
                     padding-bottom: 17px
@@ -70,7 +74,6 @@ body
                         padding-bottom: 0
             .about-content-row-grid
                 display: grid
-                //grid-template-columns: 294px 266px 294px
                 grid-template-columns: 1fr 1fr 1fr
                 row-gap: 40px
                 column-gap: 100px
@@ -83,6 +86,7 @@ body
                         padding-right: 10px
                         padding-top: 7px
                     p
+                        @include font-style($font-light, 300, normal, auto)
                         font-size: 1.25rem
                         line-height: 1.5rem
     .about-content-contacts
@@ -109,7 +113,7 @@ body
         justify-content: center
         padding-top: 30px
         a
-            padding: 0 63px
+            padding: 0 30px
             &:first-child
                 padding-left: 0
             &:last-child
@@ -117,13 +121,15 @@ body
 @include respond-to('desktop-1600')
     .about
         .about-content
+            position: relative
+            z-index: 10
             padding: 17px 30px 30px 30px
             .about-content-title
                 h3
                     font-size: 3rem
                     line-height: 3.75rem
             .about-content-row
-                padding: 10px 0 50px 0
+                padding: 25px 0 50px 0
                 .about-content-row-text
                     padding-top: 10px
                     padding-right: 20px
@@ -131,16 +137,20 @@ body
                         font-size: 1.125rem
                         line-height: 1.25rem
                 .about-content-row-grid
-                    row-gap: 20px
+                    row-gap: 40px
                     column-gap: 50px
                     padding-top: 10px
                     .grid-item
                         p
                             font-size: 1.125rem
                             line-height: 1.25rem
+                .about-content-row-item__padding
+                    box-sizing: border-box
         .about-content-contacts
             font-size: 1.25rem
             line-height: 1.625rem
+        &:before
+            background-size: cover
 
 @include respond-to('tablet')
     .about
