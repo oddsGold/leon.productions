@@ -3,7 +3,9 @@ import React from "react";
 export default function AboutContent({aboutData, handleClose}) {
     return (
         <div className={`about-content`}>
-            <span className="about-content-btn" onClick={handleClose}>&#10006;</span>
+            <span className="about-content-btn" onClick={handleClose}>
+                <img src="/images/close-icon-contact.png" alt=""/>
+            </span>
             <div className="about-content-title">
                 <h3>about</h3>
             </div>
@@ -33,14 +35,14 @@ export default function AboutContent({aboutData, handleClose}) {
             <div className="about-content-contacts">
                 <a href={`mailto:${aboutData.contacts.email}`}>{aboutData.contacts.email}</a>
                 <p className="about-content-contacts__padding">
-                    <a href={aboutData.contacts.whatsapp}>Whatsapp</a> | <a
-                    href={aboutData.contacts.telegram}>Telegram</a>
+                    <a href={aboutData.contacts.whatsapp} target="_blank">Whatsapp</a> | <a
+                    href={aboutData.contacts.telegram} target="_blank">Telegram</a>
                 </p>
                 <p>{aboutData.contacts.phone}</p>
             </div>
             <div className="about-content-social">
                 {aboutData.socials.map((social, index) => (
-                    <a href={social.link} key={index}>
+                    <a href={social.link} key={index} target="_blank">
                         <img src={social.icon} alt={social.icon.split('/').pop()} />
                     </a>
                 ))}

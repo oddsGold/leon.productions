@@ -18,7 +18,7 @@
     background: #141414
     overflow: hidden
     z-index: 1
-    height: 56vw
+    height: 70vw
     &:hover
         &:before
             opacity: 0
@@ -46,9 +46,10 @@
             width: 100%
             height: 100%
         .vimeo-player-top
-            top: -25%
+            top: -15%
     @include respond-to('desktop')
         height: 28vw
+        max-height: 534px
     @include respond-to('tablet')
         &:before
             opacity: 0
@@ -73,14 +74,20 @@
             .vimeo-player-top
                 top: 0
 
+.home-grid__item_full-width
+    @include respond-to('desktop')
+        height: 36vw
+        max-height: 680px
 
 .home-grid__item--first
-    height: 56vw
+    height: 70vw
     @include respond-to('desktop')
         height: 47vw
+        max-height: none
 
 .home-grid__item__full
     height: 100vh
+    max-height: none
 
 @include respond-to('desktop-1600')
     .home-grid__item__full
@@ -116,6 +123,10 @@
                     width: 100vh
 
 @include respond-to('tablet')
+    .home-grid__item
+        .video-container
+            .vimeo-player
+                transform: scale(1.26)
     .home-grid__item__full
         height: 100%
         position: relative
@@ -142,7 +153,6 @@
                 position: absolute
                 top: 0
                 left: 0
-                //transform: scale(1.33)
 
     .overlay-content
         height: 100vh
