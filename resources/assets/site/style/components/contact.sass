@@ -115,7 +115,7 @@
             padding: 60px 20px 70px 20px
             &:before
                 background-size: contain
-                background: url(../images/contact-modal-bg.png) no-repeat 100% 0
+                background: url("../images/contact-modal-bg.png") no-repeat 100% 0
             .btn-close__mobile
                 position: absolute
                 top: 10px
@@ -155,4 +155,9 @@
                         a
                             padding: 0 8px
 
+@include respond-to('small-mobile')
+    .contact-modal
+        .modal-content
+            &:before
+                background: url(../images/contact-modal-bg-mobile.png) no-repeat 100% 0
 

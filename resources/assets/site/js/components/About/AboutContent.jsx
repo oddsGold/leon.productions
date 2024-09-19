@@ -3,9 +3,6 @@ import React from "react";
 export default function AboutContent({aboutData, handleClose}) {
     return (
         <div className={`about-content`}>
-            <span className="about-content-btn" onClick={handleClose}>
-                <img src="/images/close-icon-contact.png" alt=""/>
-            </span>
             <div className="about-content-title">
                 <h3>about</h3>
             </div>
