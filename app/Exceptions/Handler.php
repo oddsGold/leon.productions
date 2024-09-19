@@ -53,7 +53,7 @@ class Handler extends ExceptionHandler
     public function report(Throwable $e)
     {
         if($e instanceof NotFoundHttpException) {
-            Log::error('Not found exception. URL:' . url()->current(), $e->getTrace());
+            Log::error('Not found exception. URL:' . url()->current() . ' from:' . request()->ip() . ' ref:' . request()->headers->get('referer'));
         }
         parent::report($e);
     }
