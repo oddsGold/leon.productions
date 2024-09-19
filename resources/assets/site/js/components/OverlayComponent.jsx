@@ -11,12 +11,12 @@ export default function OverlayComponent({handleHideOverlay, selectedData}) {
     useEffect(() => {
         const handleOrientationChange = () => {
             const orientation = window.screen.orientation.angle;
-            const isPortrait = window.innerWidth < window.innerHeight;
+            const isPortrait = window.screen.width < window.screen.height;
 
             if (vimeoPlayerRef.current) {
-                if (orientation === 90 && isPortrait) {
+                if (orientation === 90 && !isPortrait) {
                     vimeoPlayerRef.current.classList.add('orientation-270');
-                } else if ((orientation === -90 || orientation === 270) && isPortrait) {
+                } else if ((orientation === -90 || orientation === 270) && !isPortrait) {
                     vimeoPlayerRef.current.classList.add('orientation');
                 } else {
                     vimeoPlayerRef.current.classList.remove('orientation');

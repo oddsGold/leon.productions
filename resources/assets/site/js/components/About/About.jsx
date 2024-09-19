@@ -99,9 +99,14 @@ const About = ({aboutData}) => {
     };
 
     return (
-        <div className={`about ${isRendered ? 'about-visible' : 'about-hidden'}`} ref={aboutRef}>
-           <AboutContent aboutData={aboutData} handleClose={handleClose} />
-        </div>
+        <>
+            <span className={`${isRendered ? 'about-content-btn' : 'about-content-btn__hidden'}`} onClick={handleClose}>
+                <img src="/images/close-icon-contact.png" alt=""/>
+            </span>
+            <div className={`about ${isRendered ? 'about-visible' : 'about-hidden'}`} ref={aboutRef}>
+                <AboutContent aboutData={aboutData} handleClose={handleClose}/>
+            </div>
+        </>
     );
 };
 
