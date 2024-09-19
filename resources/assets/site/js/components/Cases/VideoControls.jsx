@@ -25,12 +25,12 @@ export default function VideoControls({
     useEffect(() => {
         const handleOrientationChange = () => {
             const orientation = window.screen.orientation.angle;
-            const isPortrait = window.innerWidth < window.innerHeight;
+            const isPortrait = window.screen.width < window.screen.height;
 
             if (controlsRef.current) {
-                if (orientation === 90 && isPortrait) {
+                if (orientation === 90 && !isPortrait) {
                     controlsRef.current.classList.add('orientation-270');
-                } else if ((orientation === -90 || orientation === 270) && isPortrait) {
+                } else if ((orientation === -90 || orientation === 270) && !isPortrait) {
                     controlsRef.current.classList.add('orientation');
                 } else {
                     controlsRef.current.classList.remove('orientation');
