@@ -5,9 +5,10 @@ namespace App\Services\Admin\Auth;
 use App\Services\Admin\Auth\JOSE\JWT;
 use App\Services\Admin\Auth\JOSE\JWTParser;
 use App\Contracts\Admin\Auth\Token\Access;
+use App\Contracts\JWT as JWTContract;
 use Illuminate\Contracts\Auth\Authenticatable;
 
-class JWTService implements Access
+class JWTService implements Access, JWTContract
 {
 
     protected string $sequence;

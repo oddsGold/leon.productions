@@ -17,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
 
         \App\Services\FileService::class,
         \App\Services\ImageService::class,
+        \App\Contracts\JWT::class => \App\Services\Admin\Auth\JWTService::class
 
     ];
 
