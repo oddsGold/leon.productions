@@ -6,7 +6,19 @@ body
 
 .site-menu
     transition: top 0.5s ease-in-out, bottom 0.5s ease-in-out
-
+.about-content-btn
+    position: absolute
+    top: 10px
+    right: 20px
+    cursor: pointer
+    color: #fff
+    font-size: 2rem
+    opacity: 1
+    display: block
+    z-index: 10000
+.about-content-btn__hidden
+    opacity: 0
+    display: none
 .about
     position: fixed
     transform: translate3d(0, -100%, 0)
@@ -33,14 +45,6 @@ body
 
     .about-content
         padding: 37px 30px 53px 30px
-        .about-content-btn
-            position: absolute
-            top: 9px
-            right: 30px
-            cursor: pointer
-            padding-top: 20px
-            color: #fff
-            font-size: 2rem
         .about-content-title
             h3
                 color: #fff
@@ -145,7 +149,7 @@ body
                 .about-content-row-grid
                     row-gap: 40px
                     column-gap: 50px
-                    padding-top: 10px
+                    padding-top: 30px
                     .grid-item
                         p
                             font-size: 1.125rem
@@ -205,6 +209,15 @@ body
         .about-content-social
             a
                 padding: 0 25px
+
+@include respond-to('tablet')
+    .about
+        background-image: url("../images/about-bg-mob.png")
+        background-repeat: no-repeat
+        background-size: cover
+        background-position: 50% 50%
+        &:before
+            background: none
 
 @include respond-to('small-mobile')
     .about
