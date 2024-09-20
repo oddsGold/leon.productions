@@ -15,18 +15,7 @@ export default function Editor({name, title, helper, required = false, height = 
                 'heading', 'fontSize', 'fontFamily', '|', 'bold', 'italic',
                 'bulletedList', 'numberedList', '|', 'indent', 'outdent',
                 'alignment', 'insertTable', '|', 'fontColor', 'fontBackgroundColor', '|',
-                'link', 'imageUpload', 'mediaEmbed','|', 'undo', 'redo', '|','htmlEmbed'
-            ]
-        },
-        image: {
-            toolbar: [
-                'linkImage',
-                'imageTextAlternative',
-                'imageStyle:inline',
-                'imageStyle:alignLeft',
-                'imageStyle:alignRight',
-                'imageStyle:block',
-                'imageStyle:side',
+                'link','|', 'undo', 'redo', '|','htmlEmbed'
             ]
         },
         fontColor: {

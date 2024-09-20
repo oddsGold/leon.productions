@@ -70,7 +70,7 @@ Ckeditor.builtinPlugins = [
     ImageInsert,
     ImageResize,
     ImageStyle,
-    ImageToolbar,
+    //ImageToolbar,
     ImageUpload,
     ImageUtils,
     Indent,
