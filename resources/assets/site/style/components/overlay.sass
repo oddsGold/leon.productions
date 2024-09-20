@@ -27,10 +27,10 @@
             display: none
     .controls
         display: flex
-        justify-content: flex-end
+        justify-content: space-between
         width: 100%
-        max-width: 80%
-        padding: 0 80px
+        max-width: 90%
+        padding: 0 10px 0 80px
         box-sizing: border-box
     .play-pause-button
         position: absolute
@@ -63,7 +63,7 @@
 
         svg
             color: #fff
-            font-size: 30px
+            font-size: calc(16px + 1vw)
 
         &.active
             svg
@@ -155,7 +155,6 @@
             width: 0
             overflow: hidden
             z-index: 3
-            //border-right: 1px solid #F5A507
 
             .filled
                 background: repeating-linear-gradient(to right, #F5A507, #F5A507 1px, transparent 1px, transparent calc(2%))

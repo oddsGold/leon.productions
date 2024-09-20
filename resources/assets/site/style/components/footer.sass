@@ -1,6 +1,6 @@
 .footer
     position: relative
-    padding: 96px 30px 79px 30px
+    padding: 10px 30px 10px 30px
     background-color: #1d1d1b
     text-align: center
     .contact
@@ -9,18 +9,25 @@
             border-bottom: 1px solid #fff
         a, p
             color: #FFFFFF
-            font-size: 2rem
+            font-size: 1.375rem
             line-height: 2.25rem
             @include font-style($font-light, 300, normal, auto)
-        p
-            padding-top: 30px
     .contact-social
         position: absolute
         right: 30px
-        top: 50%
-        margin-top: -35px
+        bottom: 30px
         a:last-child
-            margin-left: 60px
+            margin-left: 35px
+        a
+            img
+                width: 32px
+
+@include respond-to('desktop-1280')
+    .footer
+        .contact
+            a, p
+                font-size: 0.9375rem
+
 
 @include respond-to('tablet')
     .footer
