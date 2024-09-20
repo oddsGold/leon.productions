@@ -30,7 +30,6 @@ export default function GridDragAndDrop({containerReference, setNewOrderHandler 
         shiftDraggingElement.current.x = e.pageX - (coordinates.left + window.pageXOffset);
         shiftDraggingElement.current.y = e.pageY - (coordinates.top + window.pageYOffset);
 
-        //originSequence.current =
         originDraggingElement.current.classList.add('dragging-origin-item');
 
         const trWidth = originDraggingElement.current.offsetWidth;
@@ -66,6 +65,7 @@ export default function GridDragAndDrop({containerReference, setNewOrderHandler 
                 }
                 runHandlerConfig.interval = setTimeout(() => {
                     clearTimeout(runHandlerConfig.interval);
+                    originSequence.current = currentSequence;
                     setNewOrderHandler && setNewOrderHandler(currentSequence);
                 }, runHandlerConfig.delay);
             }
