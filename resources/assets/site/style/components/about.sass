@@ -162,6 +162,29 @@ body
         &:before
             background-size: cover
 
+@include respond-to('desktop-1280')
+    .about
+        .about-content
+            .about-content-title
+                h3
+                    font-size: 1.5rem
+            .about-content-row
+                .about-content-row-title
+                    p
+                        font-size: 1.375rem
+                .about-content-row-text
+                    p
+                        font-size: 0.8125rem
+                .about-content-row-grid
+                    padding-top: 10px
+                    .grid-item
+                        p
+                            font-size: 0.8125rem
+        .about-content-contacts
+            font-size: 1.375rem
+
+
+
 @include respond-to('tablet')
     .about
         max-height: 100vh

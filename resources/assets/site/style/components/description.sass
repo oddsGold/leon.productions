@@ -31,6 +31,12 @@
         transform: translateX(-50%)
         transition: transform 0.3s ease
 
+@include respond-to('desktop-1280')
+    .home-grid__item-description
+        .description-text
+            p
+                font-size: 0.9375rem
+
 @include respond-to('tablet')
     .home-grid__item-description
         max-width: 350px

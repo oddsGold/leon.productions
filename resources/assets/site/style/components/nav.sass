@@ -24,6 +24,12 @@
             color: #F5A507
             padding: 16px 30px
 
+@include respond-to('desktop-1280')
+    .site-menu
+        > div
+            .site-menu-link
+                font-size: 0.9375rem
+
 @include respond-to('tablet')
     .site-menu
         top: inherit
