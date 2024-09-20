@@ -36,7 +36,7 @@ class GoogleAuthenticatorWithQrCode implements TFA
         return $this->googleAuthenticator->checkCode(
             $secret,
             $code,
-            4
+            10
         );
     }
 
