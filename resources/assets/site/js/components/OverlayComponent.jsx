@@ -14,9 +14,9 @@ export default function OverlayComponent({handleHideOverlay, selectedData}) {
             const isPortrait = window.screen.width < window.screen.height;
 
             if (vimeoPlayerRef.current) {
-                if (orientation === 90 && !isPortrait) {
+                if (orientation === 90) {
                     vimeoPlayerRef.current.classList.add('orientation-270');
-                } else if ((orientation === -90 || orientation === 270) && !isPortrait) {
+                } else if (orientation === -90 || orientation === 270) {
                     vimeoPlayerRef.current.classList.add('orientation');
                 } else {
                     vimeoPlayerRef.current.classList.remove('orientation');
