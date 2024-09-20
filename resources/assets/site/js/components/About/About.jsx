@@ -52,7 +52,7 @@ const About = ({aboutData}) => {
                             logoElement.style.bottom = 'auto';
                         } else {
                             logoElement.style.top = 'auto';
-                            logoElement.style.bottom = '97px';
+                            logoElement.style.bottom = '30px';
                         }
                     }
                     if (menuElement) {

@@ -10,7 +10,7 @@
             background-color: transparent
             text-decoration: none
             text-transform: uppercase
-            font-size: 1.5rem
+            font-size: 1.375rem
             line-height: 1.8rem
             color: #fff
             margin-top: 20px
@@ -18,11 +18,17 @@
             &:first-child
                 margin-top: 0
             &:last-child
-                margin-top: 60px
+                margin-top: 30px
         .site-menu-link__bg
             border: 2px solid #F5A507
             color: #F5A507
-            padding: 16px 30px
+            padding: 8px 15px
+
+@include respond-to('desktop-1280')
+    .site-menu
+        > div
+            .site-menu-link
+                font-size: 0.9375rem
 
 @include respond-to('tablet')
     .site-menu
