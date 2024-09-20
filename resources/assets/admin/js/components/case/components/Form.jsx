@@ -15,6 +15,7 @@ export default function Form ({current = null, actionOnSubmit}){
         <GenericForm
             current={current}
             defaultCurrent={{
+                slug: '',
                 description: '',
                 preview_url: '',
                 main_url: '',
@@ -26,6 +27,10 @@ export default function Form ({current = null, actionOnSubmit}){
             onSubmit={actionOnSubmit}
             withoutForm={true}
             validation={Yup.object({
+                slug: Yup.string()
+                    .max(255, 'Максимально допустиммо 255 символов')
+                    .min(3, 'Минимально 3 символа')
+                    .required('Поле обезательное к заполнение'),
                 description: Yup.string()
                     .max(255, 'Максимально допустиммо 255 символов')
                     .min(3, 'Минимально 3 символа')
@@ -41,6 +46,13 @@ export default function Form ({current = null, actionOnSubmit}){
             {({ isSubmitting, values}) => (
                 <FormikForm>
 
+                    <Text
+                        name={"slug"}
+                        title={"ЧПУ"}
+                        helper={"Ссылка на этот кейс в урле"}
+                        required={true}
+                    />
+
                     <TextArea
                         name={"description"}
                         title={"Описание"}
@@ -52,7 +64,7 @@ export default function Form ({current = null, actionOnSubmit}){
                         <Text
                             name={"preview_url"}
                             title={"Preview url vimeo"}
-                            helper={"Ссылка на превью видео на сервисе вимео"}
+                            helper={"Ссылка на превью видео на сервисе вимео (slug)"}
                         />
                         <div className="case-video-preview-wrapper">
                             <VideoPlayerPreview

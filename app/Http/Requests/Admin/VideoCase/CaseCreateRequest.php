@@ -9,6 +9,7 @@ class CaseCreateRequest extends BaseRequest
     public function rules()
     {
         return [
+            'slug' => 'required|string|unique:cases|min:3|max:255|not_in:showreel',
             'description' => 'required|string|max:255',
             'preview_url' => 'nullable|string|max:150',
             'main_url' => 'required|string|max:150',

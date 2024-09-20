@@ -38,7 +38,6 @@ class CaseService extends CRUDService implements CRUD
     protected function save($model, $data)
     {
         $model->fill($data);
-        $model->slug = $this->fillSlug($model->slug, $model->description);
         $model->user()->associate(auth()->user());
         if(isset($data['image']) && $data['image']){
             $model->image()->associate($this->imageService->getById($data['image']['id'] ?? null));
