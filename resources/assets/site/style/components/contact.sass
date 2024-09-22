@@ -98,6 +98,17 @@
                     &:last-child
                         padding-right: 0
 
+@include respond-to('desktop-1680')
+    .contact-modal
+        .modal-content
+            padding: 60px 42px 60px 42px
+            .modal-body
+                .modal-body-description
+                    padding: 80px 0 40px 0
+                .modal-body-social
+                    padding-top: 40px
+
+
 @include respond-to('desktop-1280')
     .contact-modal
         .modal-content

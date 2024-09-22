@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 const Contact = ({ contactsData, title, onClose }) => {
     const [isVisible, setIsVisible] = useState(false);
 
+    console.log(contactsData)
+
     useEffect(() => {
         setTimeout(() => {
             setIsVisible(true);

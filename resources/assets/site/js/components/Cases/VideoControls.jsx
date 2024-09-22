@@ -72,7 +72,8 @@ export default function VideoControls({
                 try {
                     const duration = await player.getDuration();
                     setVideoDuration(duration);
-                } catch (error) {}
+                } catch (error) {
+                }
             }
         };
 
@@ -83,27 +84,28 @@ export default function VideoControls({
 
     useEffect(() => {
         const initializeListener = () => {
-            if(isMobile()){
+            if (isMobile()) {
                 const player = videoPlayer?.current?.[selectedData.id];
                 const playerMobileFs = videoPlayerMobileFs?.current?.[selectedData.id];
-                if(playerMobileFs && player){
+                if (playerMobileFs && player) {
                     playerMobileFs.off('fullscreenchange');
                     playerMobileFs.on('fullscreenchange', (e) => {
-                        if(!e.fullscreen){
+                        if (!e.fullscreen) {
                             try {
-                                player.getPaused().then(function(paused) {
+                                player.getPaused().then(function (paused) {
                                     setIsPlaying(paused);
                                 });
                                 playerMobileFs.getCurrentTime().then((currentTime) => {
                                     player.setCurrentTime(currentTime).then(() => {
-                                        if(isPlaying){
+                                        if (isPlaying) {
                                             player.play();
-                                        }else{
+                                        } else {
                                             player.pause();
                                         }
                                     });
                                 });
-                            }catch (e) {}
+                            } catch (e) {
+                            }
                         }
                     })
                 }
@@ -117,27 +119,47 @@ export default function VideoControls({
     }, [videoPlayer, videoPlayerMobileFs, selectedData.id]);
 
 
-    const handleInfoClick = () => {
-        setInfo(prevInfo => !prevInfo);
+    useEffect(() => {
+        const handleTouchEnd = (e) => {
+            if (controlsRef.current && !controlsRef.current.contains(e.target)) {
+                setInfo(false);
+            }
+        };
+
+        document.addEventListener('touchend', handleTouchEnd);
+        return () => {
+            document.removeEventListener('touchend', handleTouchEnd);
+        };
+    }, []);
+
+    const handleInfoToggle = () => {
+        setInfo((prevInfo) => !prevInfo);
+        if (info) {
+            controlsRef.current.classList.remove('active');
+        }
     };
 
     const handlePlayClick = () => {
         setIsPlaying(true);
-        videoPlayer?.current[selectedData.id].play().catch(e => {});
+        videoPlayer?.current[selectedData.id].play().catch(e => {
+        });
     };
 
     const handlePauseClick = () => {
         setIsPlaying(false);
-        videoPlayer?.current[selectedData.id].pause().catch(e => {});
+        videoPlayer?.current[selectedData.id].pause().catch(e => {
+        });
     };
 
     const handlePlayPauseToggle = () => {
         const newValue = !isPlaying;
         setIsPlaying(newValue);
         if (newValue) {
-            videoPlayer?.current[selectedData.id].play().catch(e => {});
+            videoPlayer?.current[selectedData.id].play().catch(e => {
+            });
         } else {
-            videoPlayer?.current[selectedData.id].pause().catch(e => {});
+            videoPlayer?.current[selectedData.id].pause().catch(e => {
+            });
         }
     }
 
@@ -151,15 +173,15 @@ export default function VideoControls({
     const handleFullscreenClick = () => {
         setIsFullscreen(!isFullscreen);
 
-        if(isMobile()){
+        if (isMobile()) {
             const player = videoPlayer?.current?.[selectedData.id];
             const playerMobileFs = videoPlayerMobileFs?.current?.[selectedData.id];
             try {
-                if(player && playerMobileFs){
+                if (player && playerMobileFs) {
                     Promise.all([
                         player.getCurrentTime(),
                         player.getMuted()
-                    ]).then(function(dimensions) {
+                    ]).then(function (dimensions) {
                         playerMobileFs.setCurrentTime(dimensions[0]);
                         playerMobileFs.setMuted(dimensions[1]);
                         playerMobileFs.play();
@@ -168,10 +190,10 @@ export default function VideoControls({
                     });
                 }
 
-            }catch (e) {
+            } catch (e) {
                 console.log(e);
             }
-        }else{
+        } else {
             const overlayElement = document.querySelector('.overlay-content');
             if (overlayElement) {
                 if (document.fullscreenElement) {
@@ -214,7 +236,7 @@ export default function VideoControls({
                         {!isMuted ? <IoVolumeHigh/> : <IoMdVolumeOff style={{color: '#f3a407'}}/>}
                     </button>
                     <div className="info-container">
-                        <button className={`info ${info ? 'active' : ''}`} onClick={handleInfoClick}>
+                        <button className={`info ${info ? 'active' : ''}`} onClick={handleInfoToggle}>
                             <span>i</span>
                         </button>
 
