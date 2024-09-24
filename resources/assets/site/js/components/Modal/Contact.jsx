@@ -11,7 +11,7 @@ const Contact = ({ contactsData, title, onClose }) => {
 
     useEffect(() => {
         if (!isVisible) {
-            const timer = setTimeout(onClose, 800);
+            const timer = setTimeout(onClose, 200);
             return () => clearTimeout(timer);
         }
     }, [isVisible, onClose]);

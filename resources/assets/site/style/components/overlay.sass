@@ -245,3 +245,13 @@
         visibility: visible
         background-color: rgba(0, 0, 0, 1)
         z-index: 100000
+
+@include respond-to('tablet')
+    .overlay-content
+        .info
+            &:hover
+                span
+                    background-color: #454443
+        .info.active
+            span
+                background-color: #f3a407

@@ -215,3 +215,12 @@
         .video-container
             .vimeo-player
                 transform: scale(1.11)
+
+
+@include respond-to('desktop-2800')
+    .home-grid__item
+        max-height: 1200px
+    .home-grid__item_full-width
+        max-height: 1400px
+    .home-grid__item--first
+        max-height: none

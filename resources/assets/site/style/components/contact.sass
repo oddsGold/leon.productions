@@ -11,7 +11,7 @@
     z-index: 9999
     opacity: 0
     visibility: hidden
-    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out
 
 .modal-content
     background: white
@@ -22,7 +22,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
     opacity: 0
     visibility: hidden
-    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out
 
 .modal-overlay.show, .modal-content.show
     opacity: 1
@@ -98,6 +98,17 @@
                     &:last-child
                         padding-right: 0
 
+@include respond-to('desktop-1680')
+    .contact-modal
+        .modal-content
+            padding: 60px 42px 60px 42px
+            .modal-body
+                .modal-body-description
+                    padding: 80px 0 40px 0
+                .modal-body-social
+                    padding-top: 40px
+
+
 @include respond-to('desktop-1280')
     .contact-modal
         .modal-content
@@ -128,6 +139,7 @@
         .modal-content
             padding: 60px 20px 70px 20px
             width: 80%
+            max-height: none
             &:before
                 background-size: contain
                 background: url("../images/contact-modal-bg.png") no-repeat 100% 0
