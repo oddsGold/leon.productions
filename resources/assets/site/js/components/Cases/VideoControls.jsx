@@ -253,7 +253,7 @@ export default function VideoControls({
                         </p>
                     </div>
                     <button className="fullscreen" onClick={handleFullscreenClick}>
-                        <MdCloseFullscreen/>
+                        {!isFullscreen ? <img style={{height: "22px"}} src="/images/fullscreen/fullscreen-icon.png" alt="fullscreen icon" /> : <MdCloseFullscreen/>}
                     </button>
                     <button className="close" onClick={handleHideOverlay}>
                         <MdClose/>
